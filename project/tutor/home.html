@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+    
+<!-- ng-app allows us to use app soccer located in soccer.module.js-->
+<html lang="en" ng-app="csstudents">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+        <title>CS: Students</title>
+        
+        <!-- Bootstrap core CSS-->
+        <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+        <!-- Custom fonts for this template-->
+        <link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+        <!-- Page level plugin CSS-->
+        <link href="vendor/datatables/dataTables.bootstrap4.css" rel="stylesheet">
+        <!-- Custom styles for this template-->
+        <link href="css/sb-admin.css" rel="stylesheet">
+        
+        <!-- link to angular -->
+        <script src="angular.min.js"></script>
+    
+        <!-- angular code we wrote -->
+        <!-- soccer.module.js is where we define the angular app called 'soccer'.
+        We use the name of the app in the html element at the top of the file -->
+        <script src="csstudents.module.js"></script>
+        <!-- data.soccer.controller.js is where we are getting the data from.
+        It defines a controller under the 'soccer' app called 'dataControl', and data is under $scope.data -->
+        <script src="data.csstudents.controller.js"></script>
+        <!-- soccer.filter.js enables us to display html code -->
+        <script src="csstudents.filter.js"></script>
+    </head>
+
+    <body class="fixed-nav sticky-footer bg-dark" id="page-top">
+      <div class="container" ng-controller="dataControl">
+
+        <!-- Navigation-->
+        <!-- Checks if user is logged in-->
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" id="mainNav" ng-init="checkifloggedin()">
+            <a class="navbar-brand" href="home.html">
+                <img src="imgs/logo3.png" width="126.9" height="32.94" alt=""> | CS: Students
+            </a>
+            <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+                <ul class="navbar-nav navbar-sidenav" id="exampleAccordion">
+                    <li class="nav-item active" data-toggle="tooltip" data-placement="right" title="Dashboard">
+                        <a class="nav-link" href="home.html">
+                            <i class="fa fa-fw fa-dashboard"></i>
+                            <span class="nav-link-text">Dashboard</span>
+                        </a>
+                    </li>
+                    
+                    <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Charts">
+                        <a class="nav-link" href="">
+                            <i class="fa fa-fw fa-area-chart"></i>
+                            <span class="nav-link-text">Charts</span>
+                        </a>
+                    </li>
+                    
+                    <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Tables">
+                        <a class="nav-link" href="">
+                            <i class="fa fa-fw fa-table"></i>
+                            <span class="nav-link-text">Tables</span>
+                        </a>
+                    </li>
+                </ul>
+            
+                <ul class="navbar-nav sidenav-toggler">
+                    <li class="nav-item">
+                        <a class="nav-link text-center" id="sidenavToggler">
+                        <i class="fa fa-fw fa-angle-left"></i>
+                        </a>
+                    </li>
+                </ul>
+            
+                <!-- logout-->
+                <ul class="navbar-nav ml-auto">
+                    <!-- menu item for logging in, active if menuHighlight is equal to 3 -->
+                    <li class="nav-item" ng-class="{'active' : (menuHighlight == 3)}" ng-show="!isloggedin">
+                        <a class="nav-link" href="index.html">Log in</a>
+                    </li>
+                      
+                    <li class="nav-item" ng-show="isloggedin">
+                        <a class="nav-link" href="" ng-click="logout()"><i class="fa fa-fw fa-sign-out"></i>Log out</a>
+                    </li>                              
+                </ul>
+            </div>
+        </nav>
+  
+        <!-- color tabs-->
+        <div class="content-wrapper">
+          
+          <div class="container-fluid">
+              <!-- Icon Cards-->
+            <div class="row">
+              <div class="col-xl-3 col-sm-6 mb-3">
+                <div class="card text-white bg-primary o-hidden h-100">
+                  <div class="card-body">
+                    <div class="card-body-icon">
+                      <i class="fa fa-fw fa-users"></i>
+                    </div>
+                    <div class="mr-5">1110 Students</div>
+                  </div>
+                  
+                  <a class="card-footer text-white clearfix small z-1" href="#">
+                    <span class="float-left">View Students</span>
+                    <span class="float-right">
+                      <i class="fa fa-angle-right"></i>
+                    </span>
+                  </a>
+                </div>
+              </div>
+              
+              <div class="col-xl-3 col-sm-6 mb-3">
+                <div class="card text-white bg-warning o-hidden h-100">
+                  <div class="card-body">
+                    <div class="card-body-icon">
+                      <i class="fa fa-fw fa-list"></i>
+                    </div>
+                    <div class="mr-5">11</br>Courses</div>
+                  </div>
+                  <a class="card-footer text-white clearfix small z-1" href="#">
+                    <span class="float-left">View Courses</span>
+                    <span class="float-right">
+                      <i class="fa fa-angle-right"></i>
+                    </span>
+                  </a>
+                </div>
+              </div>
+            </div>
+          
+            <!-- Example DataTables Card, we can enter sql data here-->
+            <div class="card mb-3">
+              <div class="card-header">
+                <i class="fa fa-table"></i> Students</div>
+              <div class="card-body">
+                <div class="table-responsive">
+                  <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                    <thead>
+                      <tr>
+                        <th>Name</th>
+                        <th>Course</th>
+                        <th>HawkID</th>
+                        <th>Grade</th>
+                      </tr>
+                    </thead>
+                    <tfoot>
+                      <tr>
+                        <th>Name</th>
+                        <th>Course</th>
+                        <th>HawkID</th>
+                        <th>Grade</th>
+                      </tr>
+                    </tfoot>
+                    <tbody>
+                      <tr>
+                        <td>Andres Rangel</td>
+                        <td>1620</td>
+                        <td>arangl</td>
+                        <td>B-</td>
+                      </tr>
+                      <tr>
+                        <td>Rachel Nease</td>
+                        <td>1220</td>
+                        <td>rnease</td>
+                        <td>A-</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+                
+                <!-- Scroll to Top Button-->
+                <a class="scroll-to-top rounded" href="#page-top">
+                  <i class="fa fa-angle-up"></i>
+                </a>
+              </div>
+              
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Bootstrap core JavaScript, at the end so content loads faster-->
+      <script src="vendor/jquery/jquery.min.js"></script>
+      <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+      <!-- Core plugin JavaScript-->
+      <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+      <!-- Page level plugin JavaScript-->
+      <script src="vendor/chart.js/Chart.min.js"></script>
+      <script src="vendor/datatables/jquery.dataTables.js"></script>
+      <script src="vendor/datatables/dataTables.bootstrap4.js"></script>
+      <!-- Custom scripts for all pages-->
+      <script src="js/sb-admin.min.js"></script>
+      <!-- Custom scripts for this page-->
+      <script src="js/sb-admin-datatables.min.js"></script>
+      <script src="js/sb-admin-charts.min.js"></script>
+    </body>
+</html>
