@@ -1,5 +1,6 @@
 <?php
     // log in user by checking whether the session variable username is set
+
     
     session_start();
     if (isset($_SESSION['username'])) {
@@ -11,6 +12,7 @@
         $isloggedin = false;
         $username = "not logged in";        
     }
+
     // send response back
     $response = array();
     $response['status'] = 'success';

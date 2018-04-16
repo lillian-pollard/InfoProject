@@ -50,7 +50,7 @@
 		// compare entered password to the password on the database
         // $hashedpass is the version of hashed password stored in the database for $username
         // $hashedpass includes the salt, and php's crypt function knows how to extract the salt from $hashedpass
-        // $password is the text password the user entered in login.html
+        // $password is the text password the user entered in studentlogin.html
 		if ($hashedpass != crypt($password, $hashedpass)) {
             // if password is incorrect
             $errorMessage .= " The password you enterered is incorrect. ";
@@ -88,4 +88,5 @@
         header('Content-Type: application/json');
         echo(json_encode($response));          
     }
+
 ?>

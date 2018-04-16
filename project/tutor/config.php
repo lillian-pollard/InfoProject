@@ -6,8 +6,9 @@ $Host = $_SERVER['SERVER_NAME'];
 // where we put images
 $imagesDir = "images/";
 // DB connection (from  mysql_db_info file).
-$DBUser = "arangl";
-$DBName = "db_arangl";
+$DBUser = "pollrd";
+$DBName = "db_pollrd";
 $DBHost = "dbdev.cs.uiowa.edu";
-$DBPassword = "5zgnHEUfvtGe";
+$DBPassword = "RPFp-JVekmGT";
 ?>
+

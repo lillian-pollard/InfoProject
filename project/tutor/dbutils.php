@@ -2,6 +2,7 @@
 // Contains some common PHP db functions. Here, we always check the  
 // return object/value for errors.  Uses the mysqli functional interface
 // as opposed to the mysqli object interface.
+
 // Connect to DB: config.php contains DB configuration.
 function connectDB($dbhost,$dbuser,$dbpasswd,$dbname) {
   $db = mysqli_connect($dbhost,$dbuser,$dbpasswd,$dbname);
@@ -9,6 +10,7 @@ function connectDB($dbhost,$dbuser,$dbpasswd,$dbname) {
     punt("Can't connect to MySQL server $dbhost db $dbname as user $dbuser");
   return($db);
 }
+
 // Submit a query and return a result object. This is just syntactic 
 // sugar and error trapping.
 function queryDB($query, $db) {
@@ -17,14 +19,17 @@ function queryDB($query, $db) {
     punt ('Error in queryDB()', $query, $db);
   return ($result);
 }
+
 // How many tuples in the result? Syntactic sugar.
 function nTuples($result) {
   return(mysqli_num_rows($result));
 }
+
 // Get next record as an associative array. Syntactic sugar.
 function nextTuple($result) {
   return (mysqli_fetch_assoc($result));
 }
+
 // Used for debugging. If invoked with a SQL query string
 // as the optional second argument, will also retrieve and
 // display MySQL error information. Otherwise, if invoked
@@ -44,18 +49,21 @@ function punt($message, $query = '', $db = '') {
   echo(json_encode($response));      
   die();
 }
+
 // Used for converting a string so it doesn't have characters
 // that will confuse MySQL and cause a problem with your SQL statement
 function makeStringSafe($db, $mystring) {
   $newstring = mysqli_real_escape_string($db, $mystring);
   return $newstring;
 }
+
     function getSalt() {
         $salt = sprintf('$2a$%02d$', 12);
     
         $bytes = getRandomBytes(16);
     
         $salt .= encodeBytes($bytes);
+
         return $salt;
     }
     
@@ -127,6 +135,7 @@ function makeStringSafe($db, $mystring) {
     
         return $output;
     }
+
   //
   // This function returns "Yes" and "No" in lieu of 1 and 0
   //
@@ -170,6 +179,7 @@ function makeStringSafe($db, $mystring) {
       
       // see if this checkbox should be checked by default
       $checked = "";
+
       // if there are checkboxes to be checked by default
         
       // see if $index is one of the values in $checkedBoxes
@@ -223,6 +233,7 @@ function makeStringSafe($db, $mystring) {
       } else {
         $selected = "";
       }
+
       // for each record in the table
       $dropdownHTML .= "<option value='$index' $selected>$ui</option>\n";
     }
@@ -235,4 +246,5 @@ function makeStringSafe($db, $mystring) {
     
   }    
   
+
 ?>

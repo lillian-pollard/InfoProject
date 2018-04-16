@@ -3,7 +3,7 @@
 <html lang="en" ng-app="tutor">
 <head>
     <!-- this is what shows up in the tabs in your browser and if you bookmark the page -->
-    <title>CS Tutors-Home</title>
+    <title>CS Tutors-Students</title>
 
     <!-- These are the links to bootstrap code -->
     <!-- we got the links from http://getbootstrap.com/docs/4.0/getting-started/introduction/ -->
@@ -18,9 +18,8 @@
     <!-- angular code we wrote -->
     <!-- entertainment.module.js is where we define the angular app called 'entertainment'. We use the title of the app in the html element at the top of the file -->
     <script src="tutor.module.js"></script>
-        <script src="data.student.controller.js"></script>
-
     <!-- data.entertainment.controller.js is where we are getting the data from. It defines a controller under the 'entertainment' app called 'dataControl', and data is under $scope.data -->
+    <script src="data.student.controller.js"></script>
     <!-- entertainment.filter.js enables us to display html code -->
     <script src="tutor.filter.js"></script>
 </head>
@@ -29,32 +28,21 @@
 <body>
     <!-- we are defining the angular controller that we will use in this chunk of html defined by the div as 'dataControl' from data.entertainment.controller.js -->
     <div class="container" ng-controller="dataControl">
-                <div ng-include ng-init="menuHighlight = 0;" src="'studentheader.html'"></div>
-
-            <!-- header -->
-            <div class="row">
-                
+        
+        <!-- header -->
+        <div ng-include ng-init="menuHighlight = 0;" src="'studentheader.html'"></div>
+            <div class="row" style=" padding-top: 100px">
+                <div class="card" style="width: col-med 3; margin: auto">
+                    <img class="card-img" src="images/documents.png" alt="Problem Sets">
+                </div>
+                <div class="card" style="width: col-med 3;margin: auto">
+                    <img class="card-img" src="images/calendar.png" alt="Calendar">
+                </div>
+                <div class="card" style="width: col-med 3;margin: auto">
+                    <img class="card-img" src="images/piechart.png" alt="Budget">
+                </div>
             </div>
-            <div class="row" style="padding-top: 100px">
-                <a href=studentlogin.html style="margin: auto">
-                    <button type="button" class="btn btn-primary btn-lg" >Student Login</button>
-                </a>
-                <a href=tutorlogin.html style="margin: auto">
-                    <button type="button" class="btn btn-primary btn-lg" >Tutor Login</button>
-                </a>
-                <a href=admin/index.html style="margin: auto">
-                    <button type="button" class="btn btn-primary btn-lg">Faculty Login</button>
-                </a>
-            </div>
-            <div style="outline: double; text-align:center;margin-top: 100px;padding: 10px">
-                <p>
-                    Tutoring  service  for  students  enrolled  in:  CS1020,  CS1110,  and  CS1210
-                </p>
-                <p>
-                    A  help  session  will  focus  oneither clarifying material from the lecture, or working on a programming problem.
-                </p>
-            </div>
-            
+        </div>
         
         
         <!-- Footer -->
