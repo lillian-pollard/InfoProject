@@ -31,17 +31,23 @@
         
         <!-- header -->
         <div ng-include ng-init="menuHighlight = 0;" src="'studentheader.html'"></div>
-            <div class="row" style=" padding-top: 100px" ng-show="isloggedin">
-                <div class="card" style="width: col-med 3; margin: auto">
-                    <a href="problemset.html"><img class="card-img" src="images/documents.png" alt="Problem Sets"></a>
-                </div>
-                <div class="card" style="width: col-med 3;margin: auto">
-                    <img class="card-img" src="images/calendar.png" alt="Calendar">
-                </div>
-                <div class="card" style="width: col-med 3;margin: auto">
-                    <img class="card-img" src="images/piechart.png" alt="Budget">
-                </div>
+            <div class="row" style="padding-top: 75px;margin: auto" ng-show="isloggedin">
+                <ul class="nav nav-tabs">
+                    <li class="nav-item">
+                      <a class="nav-link active" href="/chapter1">Chapter 1</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" href="/chapter2">Chapter 2</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" href="/chapter3">Chapter 3</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link disabled" href="/chapter4">Chapter 4</a>
+                    </li>
+              </ul>
             </div>
+            <embed width="700" height="600" src="problems/ch1.pdf" type="application/pdf"></embed>
         </div>
         
         
