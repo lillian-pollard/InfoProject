@@ -9,9 +9,9 @@ DROP TABLE IF EXISTS account;
 --Account Table
 -- for all the columns/varibles that will ve eventually sent to the web app, use exactly the same words --
 CREATE TABLE account(
-    hawkid VARCHAR(10) NOT NULL,
+    hawkid VARCHAR(20) NOT NULL,
     name VARCHAR(120) NOT NULL,
-    password VARCHAR(120) NOT NULL,
+    hashedpass VARCHAR(120) NOT NULL,
     student BIT NOT NULL,
     tutor BIT NOT NULL,
     administrator BIT NOT NULL,
@@ -21,7 +21,7 @@ CREATE TABLE account(
 --Tutor table
 -- for all the columns/varibles that will ve eventually sent to the web app, use exactly the same words --
 CREATE TABLE tutor (
-    tutorid VARCHAR(10) NOT NULL,
+    tutorid VARCHAR(20) NOT NULL,
     name VARCHAR(120) NOT NULL,
     budget VARCHAR(120) NOT NULL,
     PRIMARY KEY(tutorid),
@@ -31,7 +31,7 @@ CREATE TABLE tutor (
 --Student table
 -- for all the columns/varibles that will ve eventually sent to the web app, use exactly the same words --
 CREATE TABLE student (
-    studentid VARCHAR(10) NOT NULL,
+    studentid VARCHAR(20) NOT NULL,
     name VARCHAR(120) NOT NULL,
     budget VARCHAR(120) NOT NULL,
     PRIMARY KEY(studentid),
@@ -81,10 +81,24 @@ CREATE TABLE reservation(
                   );
 -- test cases for each data type
 INSERT INTO account VALUES('studenttutor','StudentTutor','$2a$12$f5t5UQZToCPUKNEF/KmtQek/B8M3u4GMe9kvnOxRALl4GNtDC3lSS','True','True','False','False');
+INSERT INTO account VALUES('studenttutor2','StudentTutor2','$2a$12$f5t5UQZToCPUKNEF/KmtQek/B8M3u4GMe9kvnOxRALl4GNtDC3lSS','True','True','False','False');
+INSERT INTO account VALUES('studenttutor3','StudentTutor3','$2a$12$f5t5UQZToCPUKNEF/KmtQek/B8M3u4GMe9kvnOxRALl4GNtDC3lSS','True','True','False','False');
+INSERT INTO account VALUES('studenttutor4','StudentTutor4','$2a$12$f5t5UQZToCPUKNEF/KmtQek/B8M3u4GMe9kvnOxRALl4GNtDC3lSS','True','True','False','False');
+
 INSERT INTO account VALUES('student','Student','$2a$12$f5t5UQZToCPUKNEF/KmtQek/B8M3u4GMe9kvnOxRALl4GNtDC3lSS','True','False','False','False');
+INSERT INTO account VALUES('student2','Student2','$2a$12$f5t5UQZToCPUKNEF/KmtQek/B8M3u4GMe9kvnOxRALl4GNtDC3lSS','True','False','False','False');
+INSERT INTO account VALUES('student3','Student3','$2a$12$f5t5UQZToCPUKNEF/KmtQek/B8M3u4GMe9kvnOxRALl4GNtDC3lSS','True','False','False','False');
+INSERT INTO account VALUES('student4','Student4','$2a$12$f5t5UQZToCPUKNEF/KmtQek/B8M3u4GMe9kvnOxRALl4GNtDC3lSS','True','False','False','False');
+
 INSERT INTO account VALUES('tutor','Tutor','$2a$12$f5t5UQZToCPUKNEF/KmtQek/B8M3u4GMe9kvnOxRALl4GNtDC3lSS','False','True','False','False');
+INSERT INTO account VALUES('tutor2','Tutor2','$2a$12$f5t5UQZToCPUKNEF/KmtQek/B8M3u4GMe9kvnOxRALl4GNtDC3lSS','False','True','False','False');
+INSERT INTO account VALUES('tutor3','Tutor3','$2a$12$f5t5UQZToCPUKNEF/KmtQek/B8M3u4GMe9kvnOxRALl4GNtDC3lSS','False','True','False','False');
+INSERT INTO account VALUES('tutor4','Tutor4','$2a$12$f5t5UQZToCPUKNEF/KmtQek/B8M3u4GMe9kvnOxRALl4GNtDC3lSS','False','True','False','False');
+
 INSERT INTO account VALUES('admin','Admin','$2a$12$f5t5UQZToCPUKNEF/KmtQek/B8M3u4GMe9kvnOxRALl4GNtDC3lSS','False','False','True','False');
+
 INSERT INTO account VALUES('faculty','Faculty','$2a$12$f5t5UQZToCPUKNEF/KmtQek/B8M3u4GMe9kvnOxRALl4GNtDC3lSS','False','False','False','True');
+
 INSERT INTO account VALUES('facultyadmin','FacultyAdmin','$2a$12$f5t5UQZToCPUKNEF/KmtQek/B8M3u4GMe9kvnOxRALl4GNtDC3lSS','False','False','True','True');
 
 
