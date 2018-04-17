@@ -13,12 +13,27 @@
         // define data for the app
         // in the html code we will refer to data.players. The data part comes from $scope.data, the players part comes from the JSON object below
         
-        $http.get('getplayers.php')
+        $http.get('getstudents.php')
             .then(function(response) {
                 // response.data.value has value come from the getplayers.php file $response['value']['players'] = $players;
                 $scope.data = response.data.value;
             }
                    );
+            
+        $http.get('getaccounts.php')
+            .then(function(response) {
+                // response.data.value has value come from the getplayers.php file $response['value']['players'] = $players;
+                $scope.data2 = response.data.value;
+            }
+                   );
+            
+       $http.get('isloggedin.php')
+            .then(function(response) {
+                // response.data.value has value come from the getplayers.php file $response['value']['players'] = $players;
+                $scope.datahawk = response.data.hawkid;
+            }
+                   );
+            
         /*
         $scope.data = {
             "players":[
@@ -149,7 +164,7 @@
                     } else {
                         // successful
                         // send user back to home page
-                        $window.location.href = "index.html";
+                        $window.location.href = "adminaccounts.html";
                     }
                } else {
                     alert('unexpected error');
@@ -169,7 +184,9 @@
                     } else {
                         // successful
                         // send user back to home page
-                        $window.location.href = "home.html";
+                        $window.location.href = "adminhome.html";
+                        
+   
                     }
                } else {
                     alert('unexpected error');
@@ -203,6 +220,7 @@
                if (response.status == 200) {
                     if (response.data.status == 'error') {
                         alert('error: ' + response.data.message);
+                        
                     } else {
                         // successful
                         // set $scope.isloggedin based on whether the user is logged in or not

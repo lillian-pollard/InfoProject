@@ -48,9 +48,9 @@
                     
                     <form name="accountForm" novalidate>
                     
-                        <!-- username for account -->
-                        <div class="form-group" ng-class="{ 'text-danger': accountForm.username.$invalid && accountForm.username.$touched, 'text-success': !accountForm.username.$invalid && accountForm.username.$touched }">
-                            <input type="text" placeholder="HawkID" class="form-control" ng-class="{ 'is-invalid': accountForm.username.$invalid && accountForm.username.$touched, 'is-valid': !accountForm.username.$invalid && accountForm.username.$touched }" name="username" ng-model="account.username" ng-minlength="2" id="username" required/>
+                        <!-- hawkid for account -->
+                        <div class="form-group" ng-class="{ 'text-danger': accountForm.hawkid.$invalid && accountForm.hawkid.$touched, 'text-success': !accountForm.hawkid.$invalid && accountForm.hawkid.$touched }">
+                            <input type="text" placeholder="HawkID" class="form-control" ng-class="{ 'is-invalid': accountForm.hawkid.$invalid && accountForm.hawkid.$touched, 'is-valid': !accountForm.hawkid.$invalid && accountForm.hawkid.$touched }" name="hawkid" ng-model="account.hawkid" ng-minlength="2" id="hawkid" required/>
                         </div>
                         
                         <!-- password for account -->

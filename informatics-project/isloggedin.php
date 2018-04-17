@@ -1,23 +1,23 @@
 <?php
-    // log in user by checking whether the session variable username is set
+    // log in user by checking whether the session variable hawkid is set
 
     
     session_start();
-    if (isset($_SESSION['username'])) {
-        // if the session variable username is set, then we are logged in
+    if (isset($_SESSION['hawkid'])) {
+        // if the session variable hawkid is set, then we are logged in
         $isloggedin = true;
-        $username = $_SESSION['username'];
+        $hawkid = $_SESSION['hawkid'];
     } else {
         // if we are not logged in
         $isloggedin = false;
-        $username = "not logged in";        
+        $hawkid = "not logged in";        
     }
 
     // send response back
     $response = array();
     $response['status'] = 'success';
     $response['loggedin'] = $isloggedin;
-    $response['username'] = $username;
+    $response['hawkid'] = $hawkid;
     header('Content-Type: application/json');
     echo(json_encode($response));    
 ?>
