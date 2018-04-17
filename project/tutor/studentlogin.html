@@ -46,11 +46,11 @@
         <h1>Log in</h1>
         <form name="accountForm" novalidate>
         
-            <!-- username for account -->
-            <div class="form-group" ng-class="{ 'text-danger': accountForm.username.$invalid && accountForm.username.$touched, 'text-success': !accountForm.username.$invalid && accountForm.username.$touched }">
-                <label class="form-control-label" for="username">Username (at least 2 characters long): </label>
-                <input type="text" class="form-control" ng-class="{ 'is-invalid': accountForm.username.$invalid && accountForm.username.$touched, 'is-valid': !accountForm.username.$invalid && accountForm.username.$touched }" name="username" ng-model="account.username" ng-minlength="2" id="username" required/>
-                <div ng-show="accountForm.username.$invalid && accountForm.username.$touched" >The username must be at least two characters long</div>
+            <!-- hawkid for account -->
+            <div class="form-group" ng-class="{ 'text-danger': accountForm.hawkid.$invalid && accountForm.hawkid.$touched, 'text-success': !accountForm.hawkid.$invalid && accountForm.hawkid.$touched }">
+                <label class="form-control-label" for="hawkid">Hawkid (at least 2 characters long): </label>
+                <input type="text" class="form-control" ng-class="{ 'is-invalid': accountForm.hawkid.$invalid && accountForm.hawkid.$touched, 'is-valid': !accountForm.hawkid.$invalid && accountForm.hawkid.$touched }" name="hawkid" ng-model="account.hawkid" ng-minlength="2" id="hawkid" required/>
+                <div ng-show="accountForm.hawkid.$invalid && accountForm.hawkid.$touched" >The hawkid must be at least two characters long</div>
             </div>
             
             <!-- password for account -->
