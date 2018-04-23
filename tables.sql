@@ -1,4 +1,6 @@
-DROP TABLE IF EXISTS courselist;
+DROP TABLE IF EXISTS fcourselist;
+DROP TABLE IF EXISTS scourselist;
+DROP TABLE IF EXISTS tcourselist;
 DROP TABLE IF EXISTS reservation;
 DROP TABLE IF EXISTS problemset;
 DROP TABLE IF EXISTS course;
