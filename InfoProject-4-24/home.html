@@ -18,7 +18,7 @@
     <!-- angular code we wrote -->
     <!-- entertainment.module.js is where we define the angular app called 'entertainment'. We use the title of the app in the html element at the top of the file -->
     <script src="tutor.module.js"></script>
-        <script src="data.tutor.controller.js"></script>
+        <script src="data.student.controller.js"></script>
 
     <!-- data.entertainment.controller.js is where we are getting the data from. It defines a controller under the 'entertainment' app called 'dataControl', and data is under $scope.data -->
     <!-- entertainment.filter.js enables us to display html code -->
@@ -29,14 +29,14 @@
 <body>
     <!-- we are defining the angular controller that we will use in this chunk of html defined by the div as 'dataControl' from data.entertainment.controller.js -->
     <div class="container" ng-controller="dataControl">
-                <div ng-include ng-init="menuHighlight = 0;" src="'tutorheader.html'"></div>
+                <div ng-include ng-init="menuHighlight = 0;" src="'studentheader.html'"></div>
 
             <!-- header -->
             <div class="row">
                 
             </div>
             <div class="row" style="padding-top: 100px">
-                <a href=login.html style="margin: auto">
+                <a href=studentlogin.html style="margin: auto">
                     <button type="button" class="btn btn-primary btn-lg" >Student Login</button>
                 </a>
                 <a href=tutorlogin.html style="margin: auto">

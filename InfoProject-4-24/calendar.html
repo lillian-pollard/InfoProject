@@ -34,23 +34,23 @@
             </div>
         </div>
     <!-- we are defining the angular controller that we will use in this chunk of html defined by the div as 'dataControl' from data.entertainment.controller.js -->
-    <div class="container" ng-controller="dataControl">
-        <table class="table"
+    <div class="container" ng-controller="dataControl" >
+        <table class="table">
                <thead>
                     <tr>
-                        <th>Time</th>
                         <th>Date</th>
+                        <th>Time</th>
                         <th>Tutor</th>
                         <th>Course</th>
                     </tr>
                </thead>
                <tr ng-repeat="time in data.times | filter:query">
-                    <td>{{time.sessiontime}}</td>
                     <td>{{time.sessiondate}}</td>
+                    <td>{{time.sessiontime}}</td>
                     <td>{{time.tutorid}}</td>
                     <td>{{time.courseid}}</td>
                </tr>
-            </table>
+        </table>
     
         
         

@@ -102,6 +102,10 @@ INSERT INTO account VALUES('facultyadmin','FacultyAdmin','$2a$12$f5t5UQZToCPUKNE
 
 
 INSERT INTO sessions VALUES(1,'1:00 PM','2018-05-07','tutor');
+INSERT INTO sessions VALUES(2,'2:00 PM','2018-05-07','tutor2');
+INSERT INTO sessions VALUES(3,'3:00 PM','2018-06-07','tutor3');
+INSERT INTO sessions VALUES(4,'4:00 PM','2018-06s-07','tutor4');
+
 
 INSERT INTO course VALUES('CS:101','Intro to Computer Science');
 
