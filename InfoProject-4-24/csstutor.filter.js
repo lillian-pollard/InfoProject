@@ -4,8 +4,8 @@
 (function() {
     'use strict';
     
-    // the 'entertainment' here matches the name of the app under entertainment.module.js
-    var myApp = angular.module("tutor");
+    // the 'soccer' here matches the name of the app under soccer.module.js
+    var myApp = angular.module("cstutors");
     
     // use use 'trustHtml' in the html file as the name of the filter 
     myApp.filter("trustHtml", function($sce) {
