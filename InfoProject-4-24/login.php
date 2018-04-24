@@ -30,12 +30,12 @@
     if ($isComplete) {   
     
         // get the hashed password from the user with the email that got entered
-        $query = "SELECT hawkid, hashedpass FROM account WHERE hawkid='$hawkid' AND student=1;"; 
+        $query = "SELECT hawkid, hashedpass FROM account WHERE hawkid='$hawkid';";
         $result = queryDB($query, $db);
         
         if (nTuples($result) == 0) {
             // no such hawkid
-            $errorMessage .= " Hawkid $hawkid does not correspond to any account in the system. Or you are not a student.";
+            $errorMessage .= " Hawkid $hawkid does not correspond to any account in the system. ";
             $isComplete = false;
         }
     }
@@ -50,7 +50,7 @@
 		// compare entered password to the password on the database
         // $hashedpass is the version of hashed password stored in the database for $hawkid
         // $hashedpass includes the salt, and php's crypt function knows how to extract the salt from $hashedpass
-        // $password is the text password the user entered in studentlogin.html
+        // $password is the text password the user entered in tutorlogin.html
 		if ($hashedpass != crypt($password, $hashedpass)) {
             // if password is incorrect
             $errorMessage .= " The password you enterered is incorrect. ";
@@ -88,5 +88,4 @@
         header('Content-Type: application/json');
         echo(json_encode($response));          
     }
-
 ?>
