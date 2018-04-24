@@ -1,0 +1,65 @@
+<!doctype html>
+
+<html lang="en" ng-app="tutor">
+<head>
+    <!-- this is what shows up in the tabs in your browser and if you bookmark the page -->
+    <title>CS Tutors-Home</title>
+
+    <!-- These are the links to bootstrap code -->
+    <!-- we got the links from http://getbootstrap.com/docs/4.0/getting-started/introduction/ -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css" integrity="sha384-Zug+QiDoJOrZ5t4lssLdxGhVrurbmBWopoEl+M6BdEfwnCJZtKxi1KgxUyJq13dy" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/js/bootstrap.min.js" integrity="sha384-a5N7Y/aK3qNeh15eJKGWxsqtnX/wWdSZSKp+81YjTmS15nvnvxKHuzaWwXHDli+4" crossorigin="anonymous"></script>
+    
+    <!-- link to angular -->
+    <!-- you can download it from https://angularjs.org/ then you need to upload it to the webdev server. -->
+    <script src="angular.min.js"></script>
+    <!-- angular code we wrote -->
+    <!-- entertainment.module.js is where we define the angular app called 'entertainment'. We use the title of the app in the html element at the top of the file -->
+    <script src="tutor.module.js"></script>
+        <script src="data.tutor.controller.js"></script>
+
+    <!-- data.entertainment.controller.js is where we are getting the data from. It defines a controller under the 'entertainment' app called 'dataControl', and data is under $scope.data -->
+    <!-- entertainment.filter.js enables us to display html code -->
+    <script src="tutor.filter.js"></script>
+</head>
+
+</head>
+<body>
+    <!-- we are defining the angular controller that we will use in this chunk of html defined by the div as 'dataControl' from data.entertainment.controller.js -->
+    <div class="container" ng-controller="dataControl">
+                <div ng-include ng-init="menuHighlight = 0;" src="'tutorheader.html'"></div>
+
+            <!-- header -->
+            <div class="row">
+                
+            </div>
+            <div class="row" style="padding-top: 100px">
+                <a href=login.html style="margin: auto">
+                    <button type="button" class="btn btn-primary btn-lg" >Student Login</button>
+                </a>
+                <a href=tutorlogin.html style="margin: auto">
+                    <button type="button" class="btn btn-primary btn-lg" >Tutor Login</button>
+                </a>
+                <a href=admin/index.html style="margin: auto">
+                    <button type="button" class="btn btn-primary btn-lg">Faculty Login</button>
+                </a>
+            </div>
+            <div style="outline: double; text-align:center;margin-top: 100px;padding: 10px">
+                <p>
+                    Tutoring  service  for  students  enrolled  in:  CS1020,  CS1110,  and  CS1210
+                </p>
+                <p>
+                    A  help  session  will  focus  oneither clarifying material from the lecture, or working on a programming problem.
+                </p>
+            </div>
+            
+        
+        
+        <!-- Footer -->
+        <div ng-include src="'footer.html'"></div>
+        
+    </div>
+</body>
+</html>
