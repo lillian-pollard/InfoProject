@@ -19,7 +19,14 @@
         $http.get('getbudget.php')
             .then(function(response) {
                 // response.data.value has value come from the getfilms.php file $response['value']['films'] = $films;
-                $scope.data = response.data2.value;
+                $scope.data2 = response.data.value;
+                }
+            );
+            
+        $http.get('getreservation.php')
+            .then(function(response) {
+                // response.data.value has value come from the getfilms.php file $response['value']['films'] = $films;
+                $scope.data3 = response.data.value;
                 }
             );
         
