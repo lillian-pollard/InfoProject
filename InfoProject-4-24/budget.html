@@ -27,10 +27,11 @@
 <body>
             <!-- header -->
 
-        <div ng-include ng-init="menuHighlight = 0;" src="'studentheader.html'"></div>
             
     <!-- we are defining the angular controller that we will use in this chunk of html defined by the div as 'dataControl' from data.entertainment.controller.js -->
     <div class="container" ng-controller="dataControl">
+                <div ng-include ng-init="menuHighlight = 0;" src="'studentheader.html'"></div>
+
         <table class="table">
                <thead>
                     <tr>
@@ -41,7 +42,7 @@
                </thead>
                <tr ng-repeat="budget in data2.budgets | filter:query">
                     <td>{{budget.courseid}}</td>
-                    <td>{{budget.sbudget}}</td>
+                    <td>{{budget.budget}}</td>
                     
                </tr>
             </table>

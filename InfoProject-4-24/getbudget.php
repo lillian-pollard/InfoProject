@@ -1,5 +1,5 @@
 <?php
-
+session_start();
 // We need to include these two files in order to work with the database
 include_once('config.php');
 include_once('dbutils.php');
@@ -8,9 +8,11 @@ include_once('dbutils.php');
 $db = connectDB($DBHost, $DBUser, $DBPassword, $DBName);
 
 $tabletitle = "scourselist";
+$username = $_SESSION['hawkid'];
 
 // set up a query to get information on films
-$query = "SELECT * FROM $tabletitle WHERE hawkid= ($_SESSION['hawkid'])";
+$query = "SELECT * FROM $tabletitle WHERE hawkid='$username';";
+//$query = "SELECT * FROM $tabletitle';";
 
 // run the query to get info on films
 $result = queryDB($query, $db);
@@ -22,9 +24,8 @@ $i = 0;
 // go through the results one by one
 while ($currbudget = nextTuple($result)) {
     $budgets[$i] = $currbudget;
-    $hawkid = $budgets[$i]['hawkid'];
     $courseid = $budgets[$i]['courseid'];
-    $sbudget = $budgets[$i]['budget'];
+    $budget = $budgets[$i]['budget'];
     $i++;
 }
 
