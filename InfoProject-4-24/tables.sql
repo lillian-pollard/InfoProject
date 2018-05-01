@@ -56,7 +56,6 @@ CREATE TABLE reservation(
     notes VARCHAR(3000),
     cancel BIT NOT NULL,
     sessionid INT NOT NULL,
-    problemid INT,
     studentid VARCHAR(10) NOT NULL,
     PRIMARY KEY(reservationid),
     FOREIGN KEY(sessionid) REFERENCES sessions(sessionid)
@@ -100,19 +99,39 @@ INSERT INTO account VALUES('faculty','Faculty','$2a$12$f5t5UQZToCPUKNEF/KmtQek/B
 
 INSERT INTO account VALUES('facultyadmin','FacultyAdmin','$2a$12$f5t5UQZToCPUKNEF/KmtQek/B8M3u4GMe9kvnOxRALl4GNtDC3lSS',0,0,1,1);
 
-
 INSERT INTO sessions VALUES(1,'1:00 PM','2018-05-07','tutor');
-INSERT INTO sessions VALUES(2,'2:00 PM','2018-05-07','tutor2');
+INSERT INTO sessions VALUES(2,'2:00 PM','2018-05-05','tutor2');
 INSERT INTO sessions VALUES(3,'3:00 PM','2018-06-07','tutor3');
-INSERT INTO sessions VALUES(4,'4:00 PM','2018-06s-07','tutor4');
+INSERT INTO sessions VALUES(4,'4:40 PM','2018-06-05','tutor4');
+INSERT INTO sessions VALUES(5,'2:20 PM','2018-06-06','tutor');
+INSERT INTO sessions VALUES(6,'1:00 PM','2018-06-07','tutor');
 
 
-INSERT INTO course VALUES('CS:101','Intro to Computer Science');
+INSERT INTO course VALUES('CS:1110','Intro to Computer Science');
+INSERT INTO course VALUES('CS:1210','Computer Science I: Fundamentals');
+INSERT INTO course VALUES('CS:2110','Programming for Informatics');
 
-INSERT INTO scourselist VALUES('student','CS:101',3);
-INSERT INTO tcourselist VALUES('tutor','CS:101',3);
-INSERT INTO fcourselist VALUES('faculty','CS:101');
+INSERT INTO scourselist VALUES('student','CS:1110',3);
+INSERT INTO scourselist VALUES('student','CS:1210',4);
+INSERT INTO scourselist VALUES('student2','CS:1110',3);
+INSERT INTO scourselist VALUES('student3','CS:2110',5);
+INSERT INTO scourselist VALUES('student4','CS:1210',3);
+
+INSERT INTO tcourselist VALUES('tutor','CS:1110',20);
+INSERT INTO tcourselist VALUES('tutor','CS:1210',20);
+INSERT INTO tcourselist VALUES('tutor2','CS:1110',20);
+INSERT INTO tcourselist VALUES('tutor2','CS:2110',20);
+INSERT INTO tcourselist VALUES('tutor3','CS:1110',20);
+INSERT INTO tcourselist VALUES('tutor3','CS:2110',20);
 
 
-                  
+INSERT INTO fcourselist VALUES('faculty','CS:1110');
+INSERT INTO fcourselist VALUES('faculty','CS:2110');
+INSERT INTO fcourselist VALUES('facultyadmin','CS:1210');
+
+
+INSERT INTO reservation(sessionid,studentid) VALUES(1,'student');
+INSERT INTO reservation(sessionid,studentid) VALUES(2,'student');
+INSERT INTO reservation(sessionid,studentid) VALUES(3,'student2');
+
 
