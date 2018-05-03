@@ -13,7 +13,7 @@ $tabletitle3 = "tcourselist";
 $tabletitle4 = "reservation";
 //
 //// set up a query to get information on films
-$query = "SELECT * FROM $tabletitle, $tabletitle2, $tabletitle3,$tabletitle4
+$query = "SELECT DISTINCT sessiontime, sessiondate, tutorid, $tabletitle.sessionid as sessionid FROM $tabletitle, $tabletitle2, $tabletitle3, $tabletitle4
 WHERE $tabletitle2.courseid = $tabletitle3.courseid
 AND $tabletitle.tutorid = $tabletitle3.hawkid
 AND ($tabletitle.sessionid NOT IN (SELECT sessionid from $tabletitle4)) OR ($tabletitle.sessionid=$tabletitle4.sessionid AND $tabletitle4.cancel=1);";

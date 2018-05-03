@@ -43,11 +43,11 @@
                     </tr>
                </thead>
                <tr ng-repeat="time in data.times | filter:query">
-                    <td ng-model="session.sessiondate">{{time.sessiondate}}</td>
+                    <td >{{time.sessiondate}}</td>
                     <td>{{time.sessiontime}}</td>
                     <td>{{time.tutorid}}</td>
                     <td><a href=addreservation.php>
-                        <button type="button" class="btn btn-primary btn-success">Reserve</button>
+                        <button type="button" class="btn btn-primary btn-success ng-click=addRes(sessionid,courseid)">Reserve</button>
                         </a>
                     </td>
                     

@@ -65,13 +65,15 @@ CREATE TABLE scourselist(
     hawkid VARCHAR(20) NOT NULL,
     courseid VARCHAR(20) NOT NULL,
     budget INT NOT NULL,
-    currbudget INT NOT NULL
+    currbudget INT NOT NULL,
+    FOREIGN KEY(courseid) REFERENCES course(courseid)
 );
 CREATE TABLE tcourselist(
     hawkid VARCHAR(20) NOT NULL,
     courseid VARCHAR(20) NOT NULL,
     budget INT NOT NULL,
-    currbudget INT NOT NULL
+    currbudget INT NOT NULL,
+    FOREIGN KEY(courseid) REFERENCES course(courseid)
 );
 CREATE TABLE fcourselist(
     hawkid VARCHAR(20) NOT NULL,
