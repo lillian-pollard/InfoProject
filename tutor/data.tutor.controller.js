@@ -9,6 +9,26 @@
     
     // 'dataControl' is used in the html file when defning the ng-controller attribute
     myApp.controller("dataControl", function($scope, $http, $window) {
+        $http.get('gettimes.php')
+            .then(function(response) {
+                // response.data.value has value come from the getfilms.php file $response['value']['films'] = $films;
+                $scope.data = response.data.value;
+                }
+            );
+        //get budget
+        $http.get('getbudget.php')
+            .then(function(response) {
+                // response.data.value has value come from the getfilms.php file $response['value']['films'] = $films;
+                $scope.data2 = response.data.value;
+                }
+            );
+            
+        $http.get('getreservation.php')
+            .then(function(response) {
+                // response.data.value has value come from the getfilms.php file $response['value']['films'] = $films;
+                $scope.data3 = response.data.value;
+                }
+            );
         
         // define data for the app
         // in the html code we will refer to data.films. The data part comes from $scope.data, the films part comes from the JSON object below
