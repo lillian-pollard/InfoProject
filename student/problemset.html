@@ -34,12 +34,14 @@
                <thead>
                     <tr>
                         <th>Course</th>
-                        <th>File</th>                      
+                        <th>File Name</th>
+                        <th>File</th>
                     </tr>
                </thead>
                <tr ng-repeat="problem in data4.problems | filter:query">
                     <td>{{problem.courseid}}</td>
-                    <td><embed width="700" height="200" src="problems/" + {{problem.file}} type="application/pdf"></embed></td>
+                    <td>{{problem.filename}}</td>
+                    <td class="embed-responsive"><span ng-bind-html="problem.filepdf | trustHtml"></span></td>
                </tr>
             </table>
     
