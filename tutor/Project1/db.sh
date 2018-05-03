@@ -1,1 +1,0 @@
-mysql --password='8apetNmC769s' --user='sniebuhr' --host='dbdev.cs.uiowa.edu' 'db_sniebuhr'
