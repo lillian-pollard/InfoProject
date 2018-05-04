@@ -3,7 +3,7 @@
 <html lang="en" ng-app="tutor">
 <head>
     <!-- this is what shows up in the tabs in your browser and if you bookmark the page -->
-    <title>CS Tutors </title>
+    <title>CS Tutors-Students</title>
 
     <!-- These are the links to bootstrap code -->
     <!-- we got the links from http://getbootstrap.com/docs/4.0/getting-started/introduction/ -->
@@ -25,16 +25,58 @@
 </head>
 
 <body>
-    <!-- we are defining the angular controller that we will use in this chunk of html defined by the div as 'dataControl' from data.entertainment.controller.js -->
+            <!-- header -->
+
     <div class="container" ng-controller="dataControl">
         
         <!-- header -->
-        <div ng-include ng-init="menuHighlight = 0;" src="'tutorheader.html'"></div>
-            <div class="row" style=" padding-top: 100px">
-                
-                
-            </div>
-        </div>
+        <div ng-include ng-init="menuHighlight = 2;" src="'sheader.html'"></div>     
+    <!-- we are defining the angular controller that we will use in this chunk of html defined by the div as 'dataControl' from data.entertainment.controller.js -->
+        <h2>Open Sessions</h2>
+        <table class="table">
+               <thead>
+                    <tr>
+                        <th>Date</th>
+                        <th>Time</th>
+                        <th>Tutor</th>
+                        <th></th>
+                    </tr>
+               </thead>
+               <tr ng-repeat="time in data.times | filter:query">
+                    <td >{{time.sessiondate}}</td>
+                    <td>{{time.sessiontime}}</td>
+                    <td>{{time.tutorid}}</td>
+                    <td><a href=addreservation.php>
+                        <button type="button" class="btn btn-primary btn-success ng-click=addRes(sessionid,courseid)">Reserve</button>
+                        </a>
+                    </td>
+                    
+<!--    <td><form action="addreservation.php" method="post"><input type="submit" label="select"></form></td> -->
+               </tr>
+        </table>
+        <h2>Current Reservations</h2>
+        <table class="table">
+               <thead>
+                    <tr>
+                        <th>Date</th>
+                        <th>Time</th>
+                        <th>Tutor</th>
+                        <th></th>
+                    </tr>
+               </thead>
+               <tr ng-repeat="reservation in data3.reservations | filter:query">
+                    <td>{{reservation.sessiondate}}</td>
+                    <td>{{reservation.sessiontime}}</td>
+                    <td>{{reservation.tutorid}}</td>
+                    <td><a href=cancelreservation.php>
+                        <button type="button" class="btn btn-primary btn-danger">Cancel</button>
+                        </a>
+                    </td>
+              <!--      <td><form action="cancelreservation.php" method="post"><input type="submit" label="select"></form></td> -->
+               </tr>
+        </table>
+    
+        
         
         
         <!-- Footer -->
@@ -43,5 +85,3 @@
     </div>
 </body>
 </html>
-
- 
