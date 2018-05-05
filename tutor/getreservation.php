@@ -5,30 +5,31 @@ include_once('config.php');
 include_once('dbutils.php');
 // get a connection to the database
 $db = connectDB($DBHost, $DBUser, $DBPassword, $DBName);
-$tabletitle = "tcourselist";
+$tabletitle = "reservation";
+$tabletitle2 = "sessions";
 $username = $_SESSION['hawkid'];
 // set up a query to get information on films
-$query = "SELECT * FROM $tabletitle WHERE hawkid='$username';";
-//$query = "SELECT * FROM $tabletitle';";
+$query = "SELECT * FROM $tabletitle, $tabletitle2 WHERE $tabletitle.sessionid=$tabletitle2.sessionid AND $tabletitle.studentid = '$username';";
 // run the query to get info on films
 $result = queryDB($query, $db);
 // assign results to an array we can then send back to whomever called
-$budgets = array();
+$reservations = array();
 $i = 0;
 // go through the results one by one
-while ($currbudget = nextTuple($result)) {
-    $budgets[$i] = $currbudget;
-    $courseid = $budgets[$i]['courseid'];
-    $budget = $budgets[$i]['budget'];
-    $currbudget = $budgets[$i]['currbudget'];
+while ($currres = nextTuple($result)) {
+    $reservations[$i] = $currres;
+    $sessiontime = $reservations[$i]['sessiontime'];
+    $sessiondate = $reservations[$i]['sessiondate'];
+    $tutorid = $reservations[$i]['tutorid'];
     $i++;
 }
 // put together a JSON object to send back the data on the films
 $response = array();
 $response['status'] = 'success';
+$response['number'] = nTuples($result);
 // 'value' corresponds to response.data.value in data.entertainment.controller.js
 // 'films' corresponds to ng-repeat="film in data.films | filter:query" in the index.html file
-$response['value']['budgets'] = $budgets;
+$response['value']['reservations'] = $reservations;
 header('Content-Type: application/json');
 echo(json_encode($response));
 ?>
