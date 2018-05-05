@@ -22,7 +22,21 @@
                 <a class="nav-link" href="index.html"><span class="sr-only">(current)</span></a>
               </li>
               
-             
+              <li class="nav-item" ng-class="{'active' : (menuHighlight == 1)}" ng-show="isloggedin">
+                <a class="nav-link" href="problemset.html">Problem Set</a>
+              </li>
+              
+              <li class="nav-item" ng-class="{'active' : (menuHighlight == 2)}" ng-show="isloggedin">
+                <a class="nav-link" href="calander.html">Calandar</a>
+              </li>
+              
+              <li class="nav-item" ng-class="{'active' : (menuHighlight == 3)}" ng-show="isloggedin">
+                <a class="nav-link" href="notes.html">Notes</a>
+              </li>
+              
+              <li class="nav-item" ng-class="{'active' : (menuHighlight == 4)}" ng-show="isloggedin">
+                <a class="nav-link" href="budget.html">Budget</a>
+              </li>
               
             </ul>
 
