@@ -30,18 +30,13 @@
     <div class="container" ng-controller="dataControl">
                 <div ng-include ng-init="menuHighlight = 1;" src="'sheader.html'"></div>
 
-        <table class="table">
-               <thead>
-                    <tr>
-                        <th>Course</th>
-                        <th>File Name</th>
-                        <th>File</th>
-                    </tr>
-               </thead>
-               <tr ng-repeat="problem in data4.problems | filter:query">
+        <table class="table" ng-repeat="problem in data4.problems | filter:query"style="text-align: center">
+               <tr >
                     <td>{{problem.courseid}}</td>
-                    <td>{{problem.filename}}</td>
-                    <td class="embed-responsive"><span ng-bind-html="problem.filepdf | trustHtml"></span></td>
+                    <td>{{problem.filename}}</td>           
+               </tr>
+               <tr>
+                <td class="embed-responsive embed-responsive-16by9 style="margin: auto""><span ng-bind-html="problem.filepdf | trustHtml"></span></td>
                </tr>
             </table>
     

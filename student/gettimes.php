@@ -9,14 +9,14 @@ $db = connectDB($DBHost, $DBUser, $DBPassword, $DBName);
 
 $tabletitle = "sessions";
 $tabletitle2 = "scourselist";
-$tabletitle3 = "tcourselist";
-$tabletitle4 = "reservation";
+$tabletitle3 = "reservation";
+$username = $_SESSION['hawkid'];
 //
 //// set up a query to get information on films
-$query = "SELECT DISTINCT sessiontime, sessiondate, tutorid, $tabletitle.sessionid as sessionid FROM $tabletitle, $tabletitle2, $tabletitle3, $tabletitle4
-WHERE $tabletitle2.courseid = $tabletitle3.courseid
-AND $tabletitle.tutorid = $tabletitle3.hawkid
-AND ($tabletitle.sessionid NOT IN (SELECT sessionid from $tabletitle4)) OR ($tabletitle.sessionid=$tabletitle4.sessionid AND $tabletitle4.cancel=1);";
+$query = "SELECT DISTINCT sessiontime, sessiondate, tutorid, $tabletitle.sessionid as sessionid, $tabletitle.courseid as courseid FROM $tabletitle, $tabletitle2, $tabletitle3
+WHERE $tabletitle.courseid = $tabletitle2.courseid AND scourselist.hawkid='$username'
+AND ($tabletitle.sessionid NOT IN (SELECT sessionid from $tabletitle3)) OR ($tabletitle.sessionid=$tabletitle3.sessionid AND $tabletitle3.cancel=1)
+ORDER BY SESSIONDATE,SESSIONTIME;";
 // 
 //$query = "SELECT * FROM $tabletitle;";
 // run the query to get info on films
@@ -32,6 +32,8 @@ while ($currtime = nextTuple($result)) {
     $sessiontime = $times[$i]['sessiontime'];
     $sessiondate = $times[$i]['sessiondate'];
     $tutorid = $times[$i]['tutorid'];
+    $courseid = $times[$i]['courseid'];
+    $sessionid = $times[$i]['sessionid'];
     $i++;
 }
 

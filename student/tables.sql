@@ -3,10 +3,8 @@ DROP TABLE IF EXISTS scourselist;
 DROP TABLE IF EXISTS tcourselist;
 DROP TABLE IF EXISTS reservation;
 DROP TABLE IF EXISTS problemset;
-DROP TABLE IF EXISTS course;
 DROP TABLE IF EXISTS sessions;
-DROP TABLE IF EXISTS student;
-DROP TABLE IF EXISTS tutor;
+DROP TABLE IF EXISTS course;
 DROP TABLE IF EXISTS account;
 
 
@@ -23,21 +21,25 @@ CREATE TABLE account(
     PRIMARY KEY(hawkid)
                   );
 
---Session Table
--- for all the columns/varibles that will ve eventually sent to the web app, use exactly the same words --
-CREATE TABLE sessions (
-    sessionid INT AUTO_INCREMENT,
-    sessiontime  VARCHAR(20) NOT NULL,
-    sessiondate VARCHAR(20) NOT NULL,
-    tutorid VARCHAR(10) NOT NULL,
-    PRIMARY KEY(sessionid)
-                  );
+
 --Course table
 CREATE TABLE course(
     courseid VARCHAR(20) NOT NULL,
     coursename VARCHAR(120) NOT NULL,
     PRIMARY KEY (courseid)
 );
+
+--Session Table
+-- for all the columns/varibles that will ve eventually sent to the web app, use exactly the same words --
+CREATE TABLE sessions(
+    sessionid INT AUTO_INCREMENT,
+    sessiontime  VARCHAR(20) NOT NULL,
+    sessiondate VARCHAR(20) NOT NULL,
+    tutorid VARCHAR(10) NOT NULL,
+    courseid VARCHAR(20) NOT NULL,
+    PRIMARY KEY(sessionid),
+    FOREIGN KEY(courseid) REFERENCES course(courseid)
+                  );
 
 --Problem table
 CREATE TABLE problemset (
@@ -54,13 +56,13 @@ CREATE TABLE problemset (
 CREATE TABLE reservation(
     reservationid INT NOT NULL AUTO_INCREMENT,
     notes VARCHAR(3000),
-    cancel BIT NOT NULL,
+    cancel BIT,
     sessionid INT NOT NULL,
     studentid VARCHAR(10) NOT NULL,
     PRIMARY KEY(reservationid),
     FOREIGN KEY(sessionid) REFERENCES sessions(sessionid)
                   );
---    FOREIGN KEY(problemid) REFERENCES problemset(problemid)
+
 CREATE TABLE scourselist(
     hawkid VARCHAR(20) NOT NULL,
     courseid VARCHAR(20) NOT NULL,
@@ -103,17 +105,17 @@ INSERT INTO account VALUES('faculty','Faculty','$2a$12$f5t5UQZToCPUKNEF/KmtQek/B
 
 INSERT INTO account VALUES('facultyadmin','FacultyAdmin','$2a$12$f5t5UQZToCPUKNEF/KmtQek/B8M3u4GMe9kvnOxRALl4GNtDC3lSS',0,0,1,1);
 
-INSERT INTO sessions VALUES(1,'1:00 PM','2018-05-07','tutor');
-INSERT INTO sessions VALUES(2,'2:00 PM','2018-05-05','tutor2');
-INSERT INTO sessions VALUES(3,'3:00 PM','2018-06-07','tutor3');
-INSERT INTO sessions VALUES(4,'4:40 PM','2018-06-05','tutor4');
-INSERT INTO sessions VALUES(5,'2:20 PM','2018-06-06','tutor');
-INSERT INTO sessions VALUES(6,'1:00 PM','2018-06-07','tutor');
-
 
 INSERT INTO course VALUES('CS:1110','Intro to Computer Science');
 INSERT INTO course VALUES('CS:1210','Computer Science I: Fundamentals');
 INSERT INTO course VALUES('CS:2110','Programming for Informatics');
+    
+INSERT INTO sessions(sessionid, sessiontime, sessiondate, tutorid, courseid) VALUES(1,'1:00 PM','2018-05-07','tutor','CS:1110');
+INSERT INTO sessions(sessionid, sessiontime, sessiondate, tutorid, courseid) VALUES(2,'2:00 PM','2018-05-05','tutor2','CS:1210');
+INSERT INTO sessions(sessionid, sessiontime, sessiondate, tutorid, courseid) VALUES(3,'3:00 PM','2018-06-07','tutor3','CS:1110');
+INSERT INTO sessions(sessionid, sessiontime, sessiondate, tutorid, courseid) VALUES(4,'4:40 PM','2018-06-05','tutor4','CS:1110');
+INSERT INTO sessions(sessionid, sessiontime, sessiondate, tutorid, courseid) VALUES(5,'2:20 PM','2018-06-06','tutor','CS:2110');
+INSERT INTO sessions(sessionid, sessiontime, sessiondate, tutorid, courseid) VALUES(6,'1:00 PM','2018-06-07','tutor','CS:1210');
 
 INSERT INTO scourselist VALUES('student','CS:1110',3,3);
 INSERT INTO scourselist VALUES('student','CS:1210',4,4);
@@ -146,5 +148,3 @@ INSERT INTO problemset(filename,courseid) VALUES('Week2.pdf','CS:1210');
 INSERT INTO problemset(filename,courseid) VALUES('Week4.pdf','CS:1210');
 INSERT INTO problemset(filename,courseid) VALUES('finalevaluation.pdf','CS:2110');
 INSERT INTO problemset(filename,courseid) VALUES('project.pdf','CS:2110');
-
-

@@ -44,22 +44,26 @@
         <div class='row' style='margin-top: 50px'>
             <h2>Upcoming Reservations</h2>
             <table class="table">
-                   <thead>
-                        <tr>
-                            <th>Date</th>
-                            <th>Time</th>
-                            <th>Tutor</th>
-                            <th></th>
-                        </tr>
-                   </thead>
-                   <tr ng-repeat="reservation in data3.reservations | filter:query">
-                        <td>{{reservation.sessiondate}}</td>
-                        <td>{{reservation.sessiontime}}</td>
-                        <td>{{reservation.tutorid}}</td>
-                        <td>
-                            <a href=cancelreservation.php><button type="button" class="btn btn-primary btn-danger">Cancel</button></a>
-                        </td>
-                   </tr>
+               <thead>
+                    <tr>
+                        <th>Date</th>
+                        <th>Time</th>
+                        <th>Tutor</th>
+                        <th>Course</th>
+                        <th></th>
+                    </tr>
+               </thead>
+               <tr ng-repeat="reservation in data3.reservations | filter:query">
+                    <td>{{reservation.sessiondate}}</td>
+                    <td>{{reservation.sessiontime}}</td>
+                    <td>{{reservation.tutorid}}</td>
+                    <td>{{reservation.courseid}}</td>
+                    <td><a href=cancelreservation.php>
+                        <button type="button" class="btn btn-primary btn-danger ng-click=cancel(time.reservationid)">Cancel</button>
+                        </a>
+                    </td>
+              <!--      <td><form action="cancelreservation.php" method="post"><input type="submit" label="select"></form></td> -->
+               </tr>
             </table>
         </div>
     </div>

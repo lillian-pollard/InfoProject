@@ -29,7 +29,7 @@
                 $scope.data3 = response.data.value;
                 }
             );
-            $http.get('getproblems.php')
+        $http.get('getproblems.php')
             .then(function(response) {
                 // response.data.value has value come from the getfilms.php file $response['value']['films'] = $films;
                 $scope.data4 = response.data.value;
@@ -48,10 +48,10 @@
         // 1 is for newfilm.html
         $scope.menuHighlight = 0;
         
-        $scope.cancel = function(reservationinfo) {
-          var cancelres = angular.copy(reservationinfo);
+        $scope.cancel = function(reservationid) {
+          var cancelres = angular.copy(reservationid);
           
-          $http.post("cancelreservation.php", cancelres)
+          $http.post("cancelreservation.php", {"reservationid": cancelres})
             .then(function (response) {
                if (response.status == 200) {
                     if (response.data.status == 'error') {
@@ -66,6 +66,25 @@
                }
             });
         };
+        
+        $scope.addres = function(sessionid) {          
+          $http.post("addreservation.php", {"sessionid": sessionid})
+            .then(function (response) {
+               if (response.status == 200) {
+                    if (response.data.status == 'error') {
+                        alert('error: ' + response.data.message);
+                    } else {
+                        // successful
+                        // send user back to home page
+                        $window.location.href = "calendar.html";
+                    }
+               } else {
+                    alert('unexpected error');
+               }
+            
+          });              
+        };
+
        
         // function to send new account information to web api to add it to the database
         $scope.login = function(accountDetails) {
@@ -79,7 +98,7 @@
                     } else {
                         // successful
                         // send user back to home page
-                        $window.location.href = "studentindex.html";
+                        $window.location.href = "index.html";
                     }
                } else {
                     alert('unexpected error');
@@ -122,9 +141,7 @@
                     alert('unexpected error');
                }
             });                        
-        };       
-
-        
+        };
     });
     
     

@@ -12,7 +12,7 @@ $tabletitle2 = "sessions";
 $username = $_SESSION['hawkid'];
 
 // set up a query to get information on films
-$query = "SELECT * FROM $tabletitle, $tabletitle2 WHERE $tabletitle.sessionid=$tabletitle2.sessionid AND $tabletitle.studentid = '$username';";
+$query = "SELECT * FROM $tabletitle, $tabletitle2 WHERE $tabletitle.sessionid=$tabletitle2.sessionid AND $tabletitle.studentid = '$username' ORDER BY SESSIONDATE,SESSIONTIME;";
 
 // run the query to get info on films
 $result = queryDB($query, $db);
@@ -27,6 +27,8 @@ while ($currres = nextTuple($result)) {
     $sessiontime = $reservations[$i]['sessiontime'];
     $sessiondate = $reservations[$i]['sessiondate'];
     $tutorid = $reservations[$i]['tutorid'];
+    $courseid = $reservations[$i]['courseid'];
+    $reservationid = $reservations[$i]['reservationid'];
     $i++;
 }
 

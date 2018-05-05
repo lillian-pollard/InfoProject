@@ -13,7 +13,7 @@ $username = $_SESSION['hawkid'];
 
 //
 //// set up a query to get information on films
-$query = "SELECT * FROM $tabletitle, $tabletitle2  WHERE $tabletitle.courseid = $tabletitle2.courseid AND hawkid='$username';";
+$query = "SELECT filename,$tabletitle.courseid FROM $tabletitle, $tabletitle2  WHERE $tabletitle.courseid = $tabletitle2.courseid AND hawkid='$username';";
 //$query = "SELECT * FROM $tabletitle;";
 // run the query to get info on films
 $result = queryDB($query, $db);
@@ -25,7 +25,8 @@ $i = 0;
 // go through the results one by one
 while ($currprob = nextTuple($result)) {
     $problems[$i] = $currprob;
-    $file = $problems[$i]['filename'];
+    $filename = $problems[$i]['filename'];
+    $problems[$i]['filepdf']  = "<embed width='700' height='200' src='problems/$filename' type='application/pdf'></embed>";
     $courseid = $problems[$i]['courseid'];
     $i++;
 }

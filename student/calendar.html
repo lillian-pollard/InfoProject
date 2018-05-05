@@ -36,22 +36,25 @@
         <table class="table">
                <thead>
                     <tr>
+                        <th>ID</th>
                         <th>Date</th>
                         <th>Time</th>
                         <th>Tutor</th>
+                        <th>Course</th>
                         <th></th>
                     </tr>
                </thead>
                <tr ng-repeat="time in data.times | filter:query">
-                    <td >{{time.sessiondate}}</td>
+                    <td>{{time.sessionid}}</td>
+                    <td>{{time.sessiondate}}</td>
                     <td>{{time.sessiontime}}</td>
                     <td>{{time.tutorid}}</td>
+                    <td>{{time.courseid}}</td>
                     <td><a href=addreservation.php>
-                        <button type="button" class="btn btn-primary btn-success ng-click=addRes(sessionid,courseid)">Reserve</button>
+                        <button type="button" class="btn btn-primary btn-success ng-click=addres(time.sessionid)">Reserve</button>
                         </a>
                     </td>
                     
-<!--    <td><form action="addreservation.php" method="post"><input type="submit" label="select"></form></td> -->
                </tr>
         </table>
         <h2>Current Reservations</h2>
@@ -61,6 +64,7 @@
                         <th>Date</th>
                         <th>Time</th>
                         <th>Tutor</th>
+                        <th>Course</th>
                         <th></th>
                     </tr>
                </thead>
@@ -68,8 +72,9 @@
                     <td>{{reservation.sessiondate}}</td>
                     <td>{{reservation.sessiontime}}</td>
                     <td>{{reservation.tutorid}}</td>
+                    <td>{{reservation.courseid}}</td>
                     <td><a href=cancelreservation.php>
-                        <button type="button" class="btn btn-primary btn-danger">Cancel</button>
+                        <button type="button" class="btn btn-primary btn-danger ng-click=cancel(time.reservationid)">Cancel</button>
                         </a>
                     </td>
               <!--      <td><form action="cancelreservation.php" method="post"><input type="submit" label="select"></form></td> -->

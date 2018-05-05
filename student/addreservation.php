@@ -1,5 +1,6 @@
 <?php
 
+session_start();
 // We need to include these two files in order to work with the database
 include_once('config.php');
 include_once('dbutils.php');
@@ -14,13 +15,12 @@ $data = json_decode(file_get_contents('php://input'), true);
 
 
 // get each piece of data
-
-// 'title' matches the title attribute in the form
 $sessionid = $data['sessionid'];
 $username = $_SESSION['hawkid'];
-$course = $data['courseid'];
-$budget = $data['budget'];
-
+$tabletitle = "reservation";
+$tabletitle2 = "scourselist";
+$tabletitle3 = "sessions";
+$tabletitle4 = "tcourselist";
 // set up variables to handle errors
 // is complete will be false if we find any problems when checking on the data
 $isComplete = true;
@@ -31,17 +31,12 @@ $errorMessage = "";
 // if we got this far and $isComplete is true it means we should add the film to the database
 if ($isComplete) {
     // we will set up the insert statement to add this new record to the database
-    $insertquery = "INSERT INTO reservation(sessionid,studentid) VALUES($sessionid,$username);";
+    $insertquery = "INSERT INTO $tabletitle(sessionid,studentid) VALUES('$sessionid','$username');";
     
     // run the insert statement
     queryDB($insertquery, $db);
     
-    $updatequery = "UPDATE scourselist(budget) VALUES($budget -1) WHERE hawkid='$username' AND courseid='$course';";
-    
-    // run the insert statement
-    queryDB($updatequery, $db);
-    
-    // get the id of the film we just entered
+    // get the id of the reservation we just entered
     $reservationid = mysqli_insert_id($db);
     
     // send a response back to angular
