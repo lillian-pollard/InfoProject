@@ -165,7 +165,7 @@
                     } else {
                         // successful
                         // send user back to home page
-                        $window.location.href = "index.html";
+                        $window.location.href = "../home.html";
                     }
                } else {
                     alert('unexpected error');
