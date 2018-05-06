@@ -15,24 +15,24 @@ $username = $_SESSION['hawkid'];
 $query = "SELECT $tabletitle.sessionid, sessiontime, sessiondate, tutorid, courseid FROM $tabletitle, $tabletitle2
 WHERE $tabletitle.sessionid=$tabletitle2.sessionid
 AND $tabletitle.studentid = '$username' AND cancel IS NULL
-AND sessiondate >= CURDATE()
+AND sessiondate < CURDATE()
 ORDER BY SESSIONDATE,SESSIONTIME;";
 
 // run the query to get info on films
 $result = queryDB($query, $db);
 
 // assign results to an array we can then send back to whomever called
-$reservations = array();
+$pastreservations = array();
 $i = 0;
 
 // go through the results one by one
-while ($currres = nextTuple($result)) {
-    $reservations[$i] = $currres;
-    $sessiontime = $reservations[$i]['sessiontime'];
-    $sessiondate = $reservations[$i]['sessiondate'];
-    $tutorid = $reservations[$i]['tutorid'];
-    $courseid = $reservations[$i]['courseid'];
-    $sessionid = $reservations[$i]['sessionid'];
+while ($currpast = nextTuple($result)) {
+    $pastreservations[$i] = $currpast;
+    $sessiontime = $pastreservations[$i]['sessiontime'];
+    $sessiondate = $pastreservations[$i]['sessiondate'];
+    $tutorid = $pastreservations[$i]['tutorid'];
+    $courseid = $pastreservations[$i]['courseid'];
+    $sessionid = $pastreservations[$i]['sessionid'];
     $i++;
 }
 
@@ -42,7 +42,7 @@ $response['status'] = 'success';
 $response['number'] = nTuples($result);
 // 'value' corresponds to response.data.value in data.entertainment.controller.js
 // 'films' corresponds to ng-repeat="film in data.films | filter:query" in the index.html file
-$response['value']['reservations'] = $reservations;
+$response['value']['pastreservations'] = $pastreservations;
 header('Content-Type: application/json');
 echo(json_encode($response));
 

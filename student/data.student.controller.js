@@ -35,6 +35,12 @@
                 $scope.data4 = response.data.value;
                 }
             );
+        $http.get('getpastreservations.php')
+            .then(function(response) {
+                // response.data.value has value come from the getfilms.php file $response['value']['films'] = $films;
+                $scope.data5 = response.data.value;
+                }
+            );
             
         
         // define data for the app

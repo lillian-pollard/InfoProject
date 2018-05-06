@@ -15,7 +15,8 @@ $username = $_SESSION['hawkid'];
 //// set up a query to get information on films
 $query = "SELECT DISTINCT sessiontime, sessiondate, tutorid, $tabletitle.sessionid as sessionid, $tabletitle.courseid as courseid FROM $tabletitle, $tabletitle2, $tabletitle3
 WHERE $tabletitle.courseid = $tabletitle2.courseid AND scourselist.hawkid='$username' AND $tabletitle2.currbudget > 0
-AND $tabletitle.sessionid NOT IN (SELECT sessionid from $tabletitle3)
+AND ($tabletitle.sessionid NOT IN (SELECT sessionid from $tabletitle3) OR $tabletitle.sessionid IN (SELECT sessionid from $tabletitle3 where cancel IS NOT NULL))
+AND sessiondate >= CURDATE()
 ORDER BY SESSIONDATE,SESSIONTIME;";
 // 
 //$query = "SELECT * FROM $tabletitle;";

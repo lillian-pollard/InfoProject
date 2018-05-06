@@ -136,7 +136,7 @@ INSERT INTO fcourselist VALUES('faculty','CS:2110');
 INSERT INTO fcourselist VALUES('facultyadmin','CS:1210');
 
 
-INSERT INTO reservation(cancel,sessionid,studentid) VALUES(1,1,'student');
+INSERT INTO reservation(sessionid,studentid) VALUES(1,'student');
 INSERT INTO reservation(sessionid,studentid) VALUES(2,'student');
 INSERT INTO reservation(sessionid,studentid) VALUES(3,'student2');
 

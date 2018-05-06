@@ -36,7 +36,6 @@
         <table class="table">
                <thead>
                     <tr>
-                        <th>ID</th>
                         <th>Date</th>
                         <th>Time</th>
                         <th>Tutor</th>
@@ -45,7 +44,6 @@
                     </tr>
                </thead>
                <tr ng-repeat="time in data.times | filter:query">
-                    <td>{{time.sessionid}}</td>
                     <td>{{time.sessiondate}}</td>
                     <td>{{time.sessiontime}}</td>
                     <td>{{time.tutorid}}</td>
@@ -70,13 +68,32 @@
                     <td>{{reservation.tutorid}}</td>
                     <td>{{reservation.courseid}}</td>
                     <td>
-                        <button type="button" class="btn btn-primary btn-danger" ng-click="cancel(time.sessionid)">Cancel</button>
+                        <button type="button" class="btn btn-primary btn-danger" ng-click="cancel(reservation.sessionid)">Cancel</button>
                         
                     </td>
               <!--      <td><form action="cancelreservation.php" method="post"><input type="submit" label="select"></form></td> -->
                </tr>
         </table>
+        <h2>Previous Reservations</h2>
+        <table class="table">
+               <thead>
+                    <tr>
+                        <th>Date</th>
+                        <th>Time</th>
+                        <th>Tutor</th>
+                        <th>Course</th>
+                    </tr>
+               </thead>
+               <tr ng-repeat="pastreservation in data5.pastreservations | filter:query">
+                    <td>{{pastreservation.sessiondate}}</td>
+                    <td>{{pastreservation.sessiontime}}</td>
+                    <td>{{pastreservation.tutorid}}</td>
+                    <td>{{pastreservation.courseid}}</td>
+               </tr>
+        </table>
     
+        
+     
         
         
         
