@@ -28,7 +28,7 @@ while ($currres = nextTuple($result)) {
     $sessiondate = $reservations[$i]['sessiondate'];
     $tutorid = $reservations[$i]['tutorid'];
     $courseid = $reservations[$i]['courseid'];
-    $reservationid = $reservations[$i]['reservationid'];
+    $sessionid = $reservations[$i]['sessionid'];
     $i++;
 }
 

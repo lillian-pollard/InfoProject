@@ -48,10 +48,8 @@
         // 1 is for newfilm.html
         $scope.menuHighlight = 0;
         
-        $scope.cancel = function(reservationid) {
-          var cancelres = angular.copy(reservationid);
-          
-          $http.post("cancelreservation.php", {"reservationid": cancelres})
+        $scope.cancel = function(sessionid) {          
+          $http.post("cancelreservation.php", {"sessionid": sessionid})
             .then(function (response) {
                if (response.status == 200) {
                     if (response.data.status == 'error') {
@@ -64,7 +62,8 @@
                } else {
                     alert('unexpected error');
                }
-            });
+            
+          });              
         };
         
         $scope.addres = function(sessionid) {          

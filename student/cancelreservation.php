@@ -3,7 +3,9 @@ session_start();
 // We need to include these two files in order to work with the database
 include_once('config.php');
 include_once('dbutils.php');
-
+// get data from the angular controller
+// decode the json object
+$data = json_decode(file_get_contents('php://input'), true);
 // get a connection to the database
 $db = connectDB($DBHost, $DBUser, $DBPassword, $DBName);
 
@@ -12,35 +14,42 @@ $tabletitle2="scourselist";
 $tabletitle3="tcourselist";
 $tabletitle4 = "sessions";
 $username = $_SESSION['hawkid'];
-$reservationid = $data['reservationid'];
+$sessionid = $data['sessionid'];
+// set up variables to handle errors
+// is complete will be false if we find any problems when checking on the data
+$isComplete = true;
 
-// set up a query to get information on films
-$query = "UPDATE $tabletitle SET cancel=1
-WHERE  studentid='$username'
-AND sessionid='$sessionid';";
+// error message we'll send back to angular if we run into any problems
+$errorMessage = "";
 
-// run the query to get info on films
-$result = queryDB($query, $db);
-
-// update student budget after cancelled session
-$query2 = "UPDATE $tabletitle2 SET budget=budget+1
-WHERE  studentid='$username'
-AND $;";
-
-// run the query to get info on films
-$result2 = queryDB($query2, $db);
-
-// set up a query to get information on films
-$query3 = "UPDATE $tabletitle3 SET budget=budget+1
-WHERE  hawkid='$tutorid' and ;";
-
-// run the query to get info on films
-$result3 = queryDB($query3, $db);
-
-
-// assign results to an array we can then send back to whomever called
-$response = array();
-    $response['status'] = 'success';
+// if we got this far and $isComplete is true it means we should add the film to the database
+if ($isComplete) {
+    // set up a query to get information on films
+    $query = "UPDATE $tabletitle SET cancel=1
+    WHERE sessionid='$sessionid' AND studentid='$username';";
+    
+    // run the query to get info on films
+    $result = queryDB($query, $db);
+    
+    // assign results to an array we can then send back to whomever called
+    $response = array();
+        $response['status'] = 'success';
+        header('Content-Type: application/json');
+        echo(json_encode($response));
+}
+else {
+    // there's been an error. We need to report it to the angular controller.
+    
+    // one of the things we want to send back is the data that his php file received
+    ob_start();
+    var_dump($data);
+    $postdump = ob_get_clean();
+    
+    // set up our response array
+    $response = array();
+    $response['status'] = 'error';
+    $response['message'] = $errorMessage . $postdump;
     header('Content-Type: application/json');
-    echo(json_encode($response)); 
+    echo(json_encode($response));
+}
 ?>

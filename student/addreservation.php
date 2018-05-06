@@ -1,6 +1,6 @@
 <?php
 
-session_start();
+
 // We need to include these two files in order to work with the database
 include_once('config.php');
 include_once('dbutils.php');
@@ -13,7 +13,7 @@ $db = connectDB($DBHost, $DBUser, $DBPassword, $DBName);
 // decode the json object
 $data = json_decode(file_get_contents('php://input'), true);
 
-
+session_start();
 // get each piece of data
 $sessionid = $data['sessionid'];
 $username = $_SESSION['hawkid'];
@@ -35,6 +35,20 @@ if ($isComplete) {
     
     // run the insert statement
     queryDB($insertquery, $db);
+    //update student budget for course which session is tutoring
+    $updatequery = "UPDATE $tabletitle2, $tabletitle,$tabletitle3 SET $tabletitle2.currbudget=$tabletitle2.currbudget-1
+    WHERE hawkid='$username' and $tabletitle.sessionid=$tabletitle3.sessionid and $tabletitle2.courseid=$tabletitle3.courseid
+    AND $tabletitle.sessionid='$sessionid';";
+    
+    // run the insert statement
+    queryDB($updatequery, $db);
+    //update tutor budget for course which session is tutoring
+    $updatequery2 = "UPDATE $tabletitle4,$tabletitle3 SET $tabletitle4.currbudget=$tabletitle4.currbudget-1
+    WHERE sessionid='$sessionid' and $tabletitle3.courseid=$tabletitle4.courseid and $tabletitle3.tutorid=$tabletitle4.hawkid;";
+    
+    // run the insert statement
+    queryDB($updatequery2, $db);
+
     
     // get the id of the reservation we just entered
     $reservationid = mysqli_insert_id($db);

@@ -113,21 +113,21 @@ INSERT INTO course VALUES('CS:2110','Programming for Informatics');
 INSERT INTO sessions(sessionid, sessiontime, sessiondate, tutorid, courseid) VALUES(1,'1:00 PM','2018-05-07','tutor','CS:1110');
 INSERT INTO sessions(sessionid, sessiontime, sessiondate, tutorid, courseid) VALUES(2,'2:00 PM','2018-05-05','tutor2','CS:1210');
 INSERT INTO sessions(sessionid, sessiontime, sessiondate, tutorid, courseid) VALUES(3,'3:00 PM','2018-06-07','tutor3','CS:1110');
-INSERT INTO sessions(sessionid, sessiontime, sessiondate, tutorid, courseid) VALUES(4,'4:40 PM','2018-06-05','tutor4','CS:1110');
+INSERT INTO sessions(sessionid, sessiontime, sessiondate, tutorid, courseid) VALUES(4,'4:40 PM','2018-06-05','tutor2','CS:1110');
 INSERT INTO sessions(sessionid, sessiontime, sessiondate, tutorid, courseid) VALUES(5,'2:20 PM','2018-06-06','tutor','CS:2110');
 INSERT INTO sessions(sessionid, sessiontime, sessiondate, tutorid, courseid) VALUES(6,'1:00 PM','2018-06-07','tutor','CS:1210');
 
-INSERT INTO scourselist VALUES('student','CS:1110',3,3);
-INSERT INTO scourselist VALUES('student','CS:1210',4,4);
+INSERT INTO scourselist VALUES('student','CS:1110',3,2);
+INSERT INTO scourselist VALUES('student','CS:1210',4,3);
 INSERT INTO scourselist VALUES('student2','CS:1110',3,3);
 INSERT INTO scourselist VALUES('student3','CS:2110',5,5);
 INSERT INTO scourselist VALUES('student4','CS:1210',3,3);
 
-INSERT INTO tcourselist VALUES('tutor','CS:1110',20,20);
+INSERT INTO tcourselist VALUES('tutor','CS:1110',20,19);
 INSERT INTO tcourselist VALUES('tutor','CS:1210',20,20);
 INSERT INTO tcourselist VALUES('tutor2','CS:1110',20,20);
-INSERT INTO tcourselist VALUES('tutor2','CS:2110',20,20);
-INSERT INTO tcourselist VALUES('tutor3','CS:1110',20,20);
+INSERT INTO tcourselist VALUES('tutor2','CS:2110',20,19);
+INSERT INTO tcourselist VALUES('tutor3','CS:1110',20,19);
 INSERT INTO tcourselist VALUES('tutor3','CS:2110',20,20);
 
 
@@ -136,7 +136,7 @@ INSERT INTO fcourselist VALUES('faculty','CS:2110');
 INSERT INTO fcourselist VALUES('facultyadmin','CS:1210');
 
 
-INSERT INTO reservation(sessionid,studentid) VALUES(1,'student');
+INSERT INTO reservation(cancel,sessionid,studentid) VALUES(1,1,'student');
 INSERT INTO reservation(sessionid,studentid) VALUES(2,'student');
 INSERT INTO reservation(sessionid,studentid) VALUES(3,'student2');
 

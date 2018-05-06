@@ -30,7 +30,7 @@
     <div class="container" ng-controller="dataControl">
                 <div ng-include ng-init="menuHighlight = 1;" src="'sheader.html'"></div>
 
-        <table class="table" ng-repeat="problem in data4.problems | filter:query"style="text-align: center">
+        <table class="table" ng-repeat="problem in data4.problems | filter:query">
                <tr >
                     <td>{{problem.courseid}}</td>
                     <td>{{problem.filename}}</td>           

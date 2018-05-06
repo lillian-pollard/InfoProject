@@ -50,7 +50,7 @@
                     <td>{{time.sessiontime}}</td>
                     <td>{{time.tutorid}}</td>
                     <td>{{time.courseid}}</td>
-                    <td><button type="button" class="btn btn-primary btn-success ng-click=addRes(time.sessionid)">Reserve</button></td>   
+                    <td><button type="button" class="btn btn-primary btn-success" ng-click="addres(time.sessionid)">Reserve</button></td>   
                </tr>
         </table>
         <h2>Current Reservations</h2>
@@ -70,7 +70,7 @@
                     <td>{{reservation.tutorid}}</td>
                     <td>{{reservation.courseid}}</td>
                     <td>
-                        <button type="button" class="btn btn-primary btn-danger ng-click=cancel(time.reservationid)">Cancel</button>
+                        <button type="button" class="btn btn-primary btn-danger" ng-click="cancel(time.sessionid)">Cancel</button>
                         
                     </td>
               <!--      <td><form action="cancelreservation.php" method="post"><input type="submit" label="select"></form></td> -->
