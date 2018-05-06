@@ -1,4 +1,3 @@
-
 <!doctype html>
 <html lang="en" ng-app="cstutors">
   <head>
@@ -14,20 +13,20 @@
     <link href="bootstrap.min.css" rel="stylesheet">
 
     <!-- Custom styles for this template -->
-    <link href="adminhome.css" rel="stylesheet">
+    <link href="project.css" rel="stylesheet">
     
     
     <!-- link to angular -->
     <script src="angular.min.js"></script>
 
     <!-- angular code we wrote -->
-    <!-- soccer.module.js is where we define the angular app called 'soccer'.
+    <!-- cstutors.module.js is where we define the angular app called 'cstutors'.
     We use the name of the app in the html element at the top of the file -->
     <script src="cstutors.module.js"></script>
-    <!-- data.soccer.controller.js is where we are getting the data from.
-    It defines a controller under the 'soccer' app called 'dataControl', and data is under $scope.data -->
+    <!-- data.cstutors.controller.js is where we are getting the data from.
+    It defines a controller under the 'cstutors' app called 'dataControl', and data is under $scope.data -->
     <script src="data.cstutors.controller.js"></script>
-    <!-- soccer.filter.js enables us to display html code -->
+    <!-- cstutors.filter.js enables us to display html code -->
     <script src="cstutors.filter.js"></script>
     
   </head>
@@ -49,11 +48,10 @@
             <a class="nav-link" href="" ng-click="logout()"><i class="fa fa-fw fa-sign-out"></i>Log out</a>
         </li>          
       </ul>
-      
-      
+    
     </nav>
 
-    <div class="container-fluid">
+    <div class="container-fluid" >
       <div class="row">
         <nav class="col-md-2 d-none d-md-block bg-light sidebar">
           <div class="sidebar-sticky">
@@ -70,16 +68,11 @@
                   Accounts
                 </a>
               </li>
+
               <li class="nav-item">
-                <a class="nav-link" href="admincalendar.html">
-                  <span data-feather="bar-chart-2"></span>
-                  Calendar
-                </a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">
+                <a class="nav-link" href="admincourses.html">
                   <span data-feather="layers"></span>
-                  Integrations
+                  Courses
                 </a>
               </li>
             </ul>
@@ -87,30 +80,14 @@
           </div>
         </nav>
 
-        <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
+        <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4" >
           <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
             <h1 class="h2" >Accounts</h1>
             
-            <!-- Posssible Icons to have next to header-->
-            <!--
-            <div class="btn-toolbar mb-2 mb-md-0">
-              <div class="btn-group mr-2">
-                <button class="btn btn-sm btn-outline-secondary">Share</button>
-                <button class="btn btn-sm btn-outline-secondary">Export</button>
-              </div>
-              <button class="btn btn-sm btn-outline-secondary dropdown-toggle">
-                <span data-feather="calendar"></span>
-                This week
-              </button>
-            </div>
-            -->
             
           </div>
 
-
-            <!-- code for chart element-->
-            <!--<canvas class="my-4" id="myChart" width="900" height="380"></canvas>-->
-          
+          <!-- Table displaying all accounts from table account-->
           <h5>Accounts Table:</h5>
           <div class="table-container">
             <div class="table-responsive" >
@@ -118,62 +95,26 @@
                 <thead>
                   <tr>
                     <th>hawkid</th>
-                    <th>Name</th>
+                    <th>First</th>
+                    <th>Last</th>
                     <th>Student</th>
                     <th>Tutor</th>
                     <th>Administrator</th>
                     <th>Faculty</th>
+                    <th></th>
 
                   </tr>
                 </thead>
                 <tbody  ng-repeat="account in data2.accounts">
                   <tr>
                     <td>{{account.hawkid}} </td>
-                    <td>{{account.name}}</td>
-                    <td>
-                      <div class="table-cell" ng-if="1 == account.student">
-                        <!--{{student.faculty}}-->
-                        <span data-feather="user"></span>
-
-                      </div>
-                      <div ng-if="0 == account.student">
-                        -
-                      </div>
-                    </td>
-                    
-                    <td>
-                      <div class="table-cell" ng-if="1 == account.tutor">
-                        <!--{{student.faculty}}-->
-                        <span data-feather="user"></span>
-
-                      </div>
-                      <div ng-if="0 == account.tutor">
-                        -
-                      </div>
-                    </td>
-                    
-                    <td>
-                      <div class="table-cell" ng-if="1 == account.administrator">
-                        <!--{{student.faculty}}-->
-                        <span data-feather="user"></span>
-
-                      </div>
-                      <div ng-if="0 == account.administrator">
-                        -
-                      </div>
-                    </td>
-                    
-                    <td>
-                      <div class="table-cell" ng-if="1 == account.faculty">
-                        <!--{{student.faculty}}-->
-                        <span data-feather="user"></span>
-
-                      </div>
-                      <div ng-if="0 == account.faculty">
-                        -
-                      </div>
-                    </td>
-
+                    <td>{{account.fname}}</td>
+                    <td>{{account.lname}}</td>
+                    <td><div class="table-cell" ng-if="1 == account.student"><span data-feather="user"></span></div><div ng-if="0 == account.student">-</div></td>
+                    <td><div class="table-cell" ng-if="1 == account.tutor"><span data-feather="user"></span></div><div ng-if="0 == account.tutor">-</div></td>
+                    <td><div class="table-cell" ng-if="1 == account.administrator"><span data-feather="user"></span></div><div ng-if="0 == account.administrator">-</div></td>
+                    <td><div class="table-cell" ng-if="1 == account.faculty"><span data-feather="user"></span></div><div ng-if="0 == account.faculty">-</div></td>
+                    <td><button class="btn btn-primary" ng-click="deleteAccount(account.name, account.hawkid)">Delete</button></td>
                   </tr>
                 </tbody>
  
@@ -181,20 +122,8 @@
             </div>
           </div>
         
-        
-        <!--<div class="new-student-button">
-            <div class="button-holder">
-            <p>
-              <a class="btn btn-primary" data-toggle="row-form" href="#collapse-form" role="button" aria-expanded="false" aria-controls="collapseExample">
-                Add Student
-                <span data-feather="user-plus"> Add Student</span>
-
-              </a>
-            </p>
-            </div>
-        </div>
-          -->
-        
+              
+        <h3>Create new account:</h3>
         <div class="row-form" id="collapse-form">              
             <form  name="newStudentForm" novalidate>
                 
@@ -208,37 +137,60 @@
                 </div>   
                 
                 
-                <!-- name of the player -->
-                <div class="form-group" ng-class="{ 'text-danger': newStudentForm.name.$invalid && newStudentForm.name.$touched, 'text-success': !newStudentForm.name.$invalid && newStudentForm.name.$touched }">
-                  <label class="form-control-label" for="name">Name: </label>
-                  <input type="text" class="form-control" ng-class="{ 'is-invalid': newStudentForm.name.$invalid && newStudentForm.name.$touched, 'is-valid': !newStudentForm.name.$invalid && newStudentForm.name.$touched }" name="name" ng-model="account.name" ng-minlength="2" id="name" required/>
-                  <div ng-show="newStudentForm.name.$invalid && newStudentForm.name.$touched" >The students's name must be at least two characters long</div>
+                <!-- name of the student -->
+                <div class="form-group" ng-class="{ 'text-danger': newStudentForm.fname.$invalid && newStudentForm.fname.$touched, 'text-success': !newStudentForm.fname.$invalid && newStudentForm.fname.$touched }">
+                  <label class="form-control-label" for="fname">First: </label>
+                  <input type="text" class="form-control" ng-class="{ 'is-invalid': newStudentForm.fname.$invalid && newStudentForm.fname.$touched, 'is-valid': !newStudentForm.fname.$invalid && newStudentForm.fname.$touched }" name="fname" ng-model="account.fname" ng-minlength="2" id="fname" required/>
+                  <div ng-show="newStudentForm.fname.$invalid && newStudentForm.fname.$touched" >The students's first name must be at least two characters long</div>
+                </div>
+                <div class="form-group" ng-class="{ 'text-danger': newStudentForm.lname.$invalid && newStudentForm.lname.$touched, 'text-success': !newStudentForm.lname.$invalid && newStudentForm.lname.$touched }">
+                  <label class="form-control-label" for="lname">Last: </label>
+                  <input type="text" class="form-control" ng-class="{ 'is-invalid': newStudentForm.lname.$invalid && newStudentForm.lname.$touched, 'is-valid': !newStudentForm.lname.$invalid && newStudentForm.lname.$touched }" name="lname" ng-model="account.lname" ng-minlength="2" id="lname" required/>
+                  <div ng-show="newStudentForm.lname.$invalid && newStudentForm.lname.$touched" >The students's last name must be at least two characters long</div>
                 </div>
                 
-             
-
-                <div class="form-check form-check-inline">
-                  <input class="form-check-input" ng-model="account.student" type="checkbox" id="student" value="1">
-                  <label class="form-check-label" for="inlineCheckbox1">Student</label>
+                <h5>Account Type(s):</h5>
+                <div class='row' id='accounttype'>
+                  <div class="form-check form-check-inline">
+                    <input class="form-check-input" ng-model="account.student" type="checkbox" id="student" value="1">
+                    <label class="form-check-label" for="inlineCheckbox1">Student</label>
+                  </div>
+                  <div class="form-check form-check-inline">
+                    <input class="form-check-input" ng-model="account.tutor" type="checkbox" id="tutor" value="1">
+                    <label class="form-check-label" for="inlineCheckbox2">Tutor</label>
+                  </div>
+                  <div class="form-check form-check-inline">
+                    <input class="form-check-input" ng-model="account.administrator" type="checkbox" id="administrator" value="1">
+                    <label class="form-check-label" for="inlineCheckbox3">Administrator</label>
+                  </div>
+                  <div class="form-check form-check-inline">
+                    <input class="form-check-input" ng-model="account.faculty" type="checkbox" id="faculty" value="1">
+                    <label class="form-check-label" for="inlineCheckbox4">Faculty</label>
+                  </div>   
                 </div>
-                <div class="form-check form-check-inline">
-                  <input class="form-check-input" ng-model="account.tutor" type="checkbox" id="tutor" value="1">
-                  <label class="form-check-label" for="inlineCheckbox2">Tutor</label>
-                </div>
-                <div class="form-check form-check-inline">
-                  <input class="form-check-input" ng-model="account.administrator" type="checkbox" id="administrator" value="1">
-                  <label class="form-check-label" for="inlineCheckbox3">Administrator</label>
-                </div>
-                <div class="form-check form-check-inline">
-                  <input class="form-check-input" ng-model="account.faculty" type="checkbox" id="faculty" value="1">
-                  <label class="form-check-label" for="inlineCheckbox3">Faculty</label>
-                </div>   
                 
-                
-                <!-- newPlayer is a function in the controller. player refers to the word we used under ng-model in the input fields -->
+          
+                <h5>Course(s):</h5>
+                <div class='row' id='classtype'>
+                  <div class="form-check form-check-inline">
+                    <input class="form-check-input" ng-model="account.cs1020" type="checkbox" id="cs1020" value="1">
+                    <label class="form-check-label" for="inlineCheckbox5">CS:1020</label>
+                  </div>
+                  <div class="form-check form-check-inline">
+                    <input class="form-check-input" ng-model="account.cs1110" type="checkbox" id="cs1110" value="1">
+                    <label class="form-check-label" for="inlineCheckbox6">CS:1110</label>
+                  </div>
+                  <div class="form-check form-check-inline">
+                    <input class="form-check-input" ng-model="account.cs1210" type="checkbox" id="cs1210" value="1">
+                    <label class="form-check-label" for="inlineCheckbox7">CS:1210</label>
+                  </div>
+                </div>
+              
                 <button class="btn btn-default" ng-click="newAccount(account)" ng-disabled="newStudentForm.$invalid">Add Account</button>
             </form>
         </div> <!-- close row -->
+        
+      
           
         </main>
         

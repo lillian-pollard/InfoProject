@@ -17,11 +17,11 @@
     <script src="angular.min.js"></script>
     
     <!-- angular code we wrote -->
-    <!-- soccer.module.js is where we define the angular app called 'soccer'. We use the name of the app in the html element at the top of the file -->
+    <!-- cstutors.module.js is where we define the angular app called 'cstutors'. We use the name of the app in the html element at the top of the file -->
     <script src="cstutors.module.js"></script>
-    <!-- data.soccer.controller.js is where we are getting the data from. It defines a controller under the 'soccer' app called 'dataControl', and data is under $scope.data -->
+    <!-- data.cstutors.controller.js is where we are getting the data from. It defines a controller under the 'cstutors' app called 'dataControl', and data is under $scope.data -->
     <script src="data.cstutors.controller.js"></script>
-    <!-- soccer.filter.js enables us to display html code -->
+    <!-- cstutors.filter.js enables us to display html code -->
     <script src="cstutors.filter.js"></script>
     
     <link rel="stylesheet" href="login.css"/>
@@ -55,7 +55,7 @@
                         
                         <!-- password for account -->
                         <div class="form-group" ng-class="{ 'text-danger': accountForm.password.$invalid && accountForm.password.$touched, 'text-success': !accountForm.password.$invalid && accountForm.password.$touched }">
-                            <input type="password" placeholder="Password" class="form-control" ng-class="{ 'is-invalid': accountForm.password.$invalid && accountForm.password.$touched, 'is-valid': !accountForm.password.$invalid && accountForm.password.$touched }" name="password" ng-model="account.password" ng-minlength="6" id="password" required/>
+                            <input type="password" placeholder="Password" class="form-control" ng-class="{ 'is-invalid': accountForm.password.$invalid && accountForm.password.$touched, 'is-valid': !accountForm.password.$invalid && accountForm.password.$touched }" name="password" ng-model="account.password" ng-minlength="3" id="password" required/>
                         </div>
                     
                         <button class="btn btn-lg btn-primary btn-block" ng-click="login(account)" ng-disabled="accountForm.$invalid">Log in</button>

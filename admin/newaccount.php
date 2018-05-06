@@ -1,5 +1,5 @@
 <?php
-
+//COMMENTED
 // We need to include these two files in order to work with the database
 include_once('config.php');
 include_once('dbutils.php');
@@ -15,13 +15,16 @@ $data = json_decode(file_get_contents('php://input'), true);
 
 // get each piece of data
 
-// 
 $HawkID = $data['HawkID'];
-$name = $data['name'];
+$fname = $data['fname'];
+$lname = $data['lname'];
 $student = $data['student'];
 $tutor = $data['tutor'];
 $administrator = $data['administrator'];
 $faculty = $data['faculty'];
+$cs1210 = $data['cs1210'];
+$cs1110 = $data['cs1110'];
+$cs1020 = $data['cs1020'];
 
 
 // set up variables to handle errors
@@ -60,17 +63,52 @@ if ($isComplete) {
     }
 }
 
-// if we got this far and $isComplete is true it means we should add the player to the database
+
+
+//inserts into scourselist if account is student
+if($student){
+    if($cs1210){$insertcs1210 = "INSERT INTO scourselist(hawkid, courseid) VALUES ('$HawkID', 1210)";queryDB($insertcs1210, $db);}
+    if($cs1110){$insertcs1110 = "INSERT INTO scourselist(hawkid, courseid) VALUES ('$HawkID', 1110)";queryDB($insertcs1110, $db);}
+    if($cs1020){$insertcs1020 = "INSERT INTO scourselist(hawkid, courseid) VALUES ('$HawkID', 1020)";queryDB($insertcs1020, $db);}
+}
+
+//inserts into tcourselist if account is tutor
+if($tutor){
+    if($cs1210){$insertcs1210t = "INSERT INTO tcourselist(hawkid, courseid) VALUES ('$HawkID', 1210)";queryDB($insertcs1210t, $db);}
+    if($cs1110){$insertcs1110t = "INSERT INTO tcourselist(hawkid, courseid) VALUES ('$HawkID', 1110)";queryDB($insertcs1110t, $db);}
+    if($cs1020){$insertcs1020t = "INSERT INTO tcourselist(hawkid, courseid) VALUES ('$HawkID', 1020)";queryDB($insertcs1020t, $db);}
+}
+
+//inserts into fcourselist if account is faculty
+if($faculty){
+    if($cs1210){$insertcs1210f = "INSERT INTO fcourselist(hawkid, courseid) VALUES ('$HawkID', 1210)";queryDB($insertcs1210f, $db);}
+    if($cs1110){$insertcs1110f = "INSERT INTO fcourselist(hawkid, courseid) VALUES ('$HawkID', 1110)";queryDB($insertcs1110f, $db);}
+    if($cs1020){$insertcs1020f = "INSERT INTO fcourselist(hawkid, courseid) VALUES ('$HawkID', 1020)";queryDB($insertcs1020f, $db);}
+}
+
+
+
+
+
+
+
+// if we got this far and $isComplete is true it means we should add the account to the database
 if ($isComplete) {
     // create a hashed version of the name    
     // we will set up the insert statement to add this new record to the database
-    $insertquery = "INSERT INTO account(hawkid, name, hashedpass,student,tutor,administrator,faculty) VALUES ('$HawkID', '$name', 'True', '$student', '$tutor','$administrator', '$faculty')";
+    $insertquery = "INSERT INTO account(hawkid, fname, lname, hashedpass,student,tutor,administrator,faculty) VALUES ('$HawkID', '$fname','$lname', '$HawkID', '$student', '$tutor','$administrator', '$faculty')";
+    
+
+    
     
     // run the insert statement
     queryDB($insertquery, $db);
     
     // get the id of the account we just entered
     $accountid = mysqli_insert_id($db);
+    
+
+
     
     // send a response back to angular
     $response = array();

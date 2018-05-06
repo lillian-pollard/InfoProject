@@ -1,3 +1,4 @@
+
 <!doctype html>
 <html lang="en" ng-app="cstutors" >
   <head>
@@ -30,11 +31,14 @@
     <script src="cstutors.filter.js"></script>
     
   </head>
+  
+  <!-- Main Body of page. Checks if user is logged in -->
   <body ng-controller="dataControl" ng-show="isloggedin" >
-    <div>
+    
+    <!-- Top Nav. Log out option shown if user is logged in-->
     <nav class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0" ng-init="checkifloggedin()">
       <!--<a class="navbar-brand col-sm-3 col-md-2 mr-0" href="#">Company name</a>-->
-      <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="adminhome.html"><img src="imgs/logo3.png" width="126.9" height="32.94" alt=""></a>
+      <a class="navbar-brand col-sm-3 col-md-2 mr-0" ><img src="imgs/logo3.png" width="126.9" height="32.94" alt=""></a>
       <!--<input class="form-control form-control-dark w-100" type="text" placeholder="Search" aria-label="Search">-->
       
       <ul class="navbar-nav px-3">
@@ -47,46 +51,60 @@
             <a class="nav-link" href="" ng-click="logout()"><i class="fa fa-fw fa-sign-out"></i>Log out</a>
         </li>          
       </ul>
-      
-      
     </nav>
-    
+
+    <!-- Container contains sidenav/main body -->
     <div class="container-fluid">
-      <div class="row">
-        <nav class="col-md-2 d-none d-md-block bg-light sidebar">
-          <div class="sidebar-sticky">
-            <ul class="nav flex-column">
-              <li class="nav-item">
-                <a class="nav-link active" href="#">
-                  <span data-feather="home"></span>
-                  Dashboard <span class="sr-only">(current)</span>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="adminaccounts.html">
-                  <span data-feather="users"></span>
-                  Accounts
-                </a>
-              </li>
-       
-              <li class="nav-item">
-                <a class="nav-link" href="admincourses.html">
-                  <span data-feather="layers"></span>
-                  Courses
-                </a>
-              </li>
-            </ul>
-
-          </div>
-        </nav>
-
-        <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
-          <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
-            <h1 class="h2" >Hello, {{datahawk}}</h1>
-
+        <div class="row">
+            <!--Side Nav-->
+            <nav class="col-md-2 d-none d-md-block bg-light sidebar">
+                <div class="sidebar-sticky">
+                    <ul class="nav flex-column">
+                      <li class="nav-item"><a class="nav-link active" href="#"><span data-feather="home"></span>Dashboard<span class="sr-only">(current)</span></a></li>
+                    </ul>
+                </div>
+            </nav>
             
-          </div>
-
+            <!--Main body-->
+            <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
+                <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
+                    <h1 class="h2" >Hello, {{datahawk}}</h1>
+                </div>
+                
+                
+                <h4>Your Courses:</h4>
+                <div class='cardholder'>
+                  <div class="card" ng-show="isCourse1020">
+                      <div class="card-header" ng-init="checkCourse1020()">CS:1020:0AAA</div>
+                        <div class="card-body">
+                            <h4 class="card-title">Principles of Computing</h4>
+                            <p class="card-text">3:30P - 4:20P MW 100 PH  </p>
+                            <a href='course1020.html' class="btn btn-primary">Course Details</a>
+                        </div>
+                  </div>
+                  
+                  <div class="card"  ng-show="isCourse1110">
+                      <div class="card-header" ng-init="checkCourse1110()">CS:1110:0AAA</div>
+                      <div class="card-body">
+                          <h4 class="card-title">Introduction to Computer Science</h4>
+                          <p class="card-text">2:00P - 3:15P TTh LR2 VAN </p>
+                          <a href='course1110.html' class="btn btn-primary">Course Details</a>
+                      </div>
+                  </div>
+                  
+                  <div class="card" ng-show="isCourse1210">
+                      <div class="card-header" ng-init="checkCourse1210()">CS:1210:0AAA</div>
+                      <div class="card-body">
+                          <h4 class="card-title">Computer Science I: Fundamentals</h4>
+                          <p class="card-text">9:30A - 10:20A MWF W10 PBB</p>
+                          <a href='course1210.html'class="btn btn-primary">Course Details</a>
+                      </div>
+                  </div>
+                  
+                </div>
+            </main>
+        </div>
+    </div>
 
     <!-- Bootstrap core JavaScript
     ================================================== -->
@@ -133,6 +151,5 @@
         }
       });
     </script>
-    </div>
   </body>
 </html>

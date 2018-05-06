@@ -7,11 +7,25 @@ include_once('dbutils.php');
 // get a connection to the database
 $db = connectDB($DBHost, $DBUser, $DBPassword, $DBName);
 
+$tablename = "scourselist";
 
-    if (isset($_SESSION['hawkid'])) {
-        // if the session variable hawkid is set, then we are logged in
-        $hawkid = $_SESSION['hawkid'];
-    }    
+// set up a query to get information on students
+$query = "SELECT * FROM $tablename WHERE courseid = 1020;";
+
+// run the query to get info on students
+$result = queryDB($query, $db);
+
+// assign results to an array we can then send back to whomever called
+$students = array();
+$i = 0;
+
+// go through the results one by one
+while ($currStudent = nextTuple($result)) {
+    $students[$i] = $currStudent;
+    $hawkid = $students[$i]['hawkid'];
+    
+    $i++;
+}
 
 // put together a JSON object to send back the data on the students
 $response = array();

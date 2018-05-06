@@ -22,9 +22,9 @@
         $hawkid = makeStringSafe($db, $hawkid);
     }
     
-    if (!isset($password) || (strlen($password) < 6)) {
+    if (!isset($password) || (strlen($password) < 2)) {
         $isComplete = false;
-        $errorMessage .= "Please enter a password with at least six characters. ";
+        $errorMessage .= "Please enter a password with at least two characters. ";
     }      
 	
     if ($isComplete) {   
@@ -57,6 +57,16 @@
             $isComplete = false;
         }
     }
+    
+    //Queries values for roles from account table
+    $query = "SELECT student, tutor, administrator, faculty FROM account WHERE hawkid = '$hawkid';";
+    $result = queryDB($query, $db);
+
+	$row = nextTuple($result);
+	$student = $row['student'];
+	$tutor = $row['tutor'];
+    $administrator = $row['administrator'];
+	$faculty = $row['faculty'];
          
     if ($isComplete) {   
         // password was entered correctly
@@ -71,6 +81,11 @@
         $response = array();
         $response['status'] = 'success';
 		$response['message'] = 'logged in';
+        $response['student'] = $student;
+		$response['tutor'] = $tutor;
+        $response['administrator'] = $administrator;
+		$response['faculty'] = $faculty;
+        
         header('Content-Type: application/json');
         echo(json_encode($response));
     } else {
