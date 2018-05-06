@@ -67,16 +67,16 @@ if ($isComplete) {
 
 //inserts into scourselist if account is student
 if($student){
-    if($cs1210){$insertcs1210 = "INSERT INTO scourselist(hawkid, courseid) VALUES ('$HawkID', 1210)";queryDB($insertcs1210, $db);}
-    if($cs1110){$insertcs1110 = "INSERT INTO scourselist(hawkid, courseid) VALUES ('$HawkID', 1110)";queryDB($insertcs1110, $db);}
-    if($cs1020){$insertcs1020 = "INSERT INTO scourselist(hawkid, courseid) VALUES ('$HawkID', 1020)";queryDB($insertcs1020, $db);}
+    if($cs1210){$insertcs1210 = "INSERT INTO scourselist(hawkid, courseid, budget, currbudget) VALUES ('$HawkID', 1210, 4, 4)";queryDB($insertcs1210, $db);}
+    if($cs1110){$insertcs1110 = "INSERT INTO scourselist(hawkid, courseid, budget, currbudget) VALUES ('$HawkID', 1110, 4, 4)";queryDB($insertcs1110, $db);}
+    if($cs1020){$insertcs1020 = "INSERT INTO scourselist(hawkid, courseid, budget, currbudget) VALUES ('$HawkID', 1020, 4, 4)";queryDB($insertcs1020, $db);}
 }
 
 //inserts into tcourselist if account is tutor
 if($tutor){
-    if($cs1210){$insertcs1210t = "INSERT INTO tcourselist(hawkid, courseid) VALUES ('$HawkID', 1210)";queryDB($insertcs1210t, $db);}
-    if($cs1110){$insertcs1110t = "INSERT INTO tcourselist(hawkid, courseid) VALUES ('$HawkID', 1110)";queryDB($insertcs1110t, $db);}
-    if($cs1020){$insertcs1020t = "INSERT INTO tcourselist(hawkid, courseid) VALUES ('$HawkID', 1020)";queryDB($insertcs1020t, $db);}
+    if($cs1210){$insertcs1210t = "INSERT INTO tcourselist(hawkid, courseid, budget, currbudget) VALUES ('$HawkID', 1210, 20, 20)";queryDB($insertcs1210t, $db);}
+    if($cs1110){$insertcs1110t = "INSERT INTO tcourselist(hawkid, courseid, budget, currbudget) VALUES ('$HawkID', 1110, 20, 20)";queryDB($insertcs1110t, $db);}
+    if($cs1020){$insertcs1020t = "INSERT INTO tcourselist(hawkid, courseid, budget, currbudget) VALUES ('$HawkID', 1020, 20, 20)";queryDB($insertcs1020t, $db);}
 }
 
 //inserts into fcourselist if account is faculty
