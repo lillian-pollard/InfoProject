@@ -19,16 +19,6 @@
                 $scope.data = response.data.value;
             }
                    );
-        /*
-        $scope.data = {
-            "players":[
-                {"name":"Lionel Messi", "country":"Argentina", "club":"FC Barcelona", "video":"<iframe src='https://www.youtube.com/embed/E2MBCa_OFsY' frameborder='0' allow='autoplay; encrypted-media' allowfullscreen></iframe>", "videoid":"E2MBCa_OFsY"},
-                {"name":"Neymar Jr.", "country":"Brazil", "club":"Paris Saint Germain", "video":"<iframe src='https://www.youtube.com/embed/E2MBCa_OFsY' frameborder='0' allow='autoplay; encrypted-media' allowfullscreen></iframe>", "videoid":"E2MBCa_OFsY"},
-                {"name":"Gianluigi Buffon", "country":"Italy", "club":"Juventus", "video":"<iframe src='https://www.youtube.com/embed/U0XSU0wNiNw' frameborder='0' allow='autoplay; encrypted-media' allowfullscreen></iframe>", "videoid":"U0XSU0wNiNw"},
-                {"name":"Diego Godin", "country":"Uruguay", "club":"Atletico Madrid", "video":"<iframe src='https://www.youtube.com/embed/E2MBCa_OFsY' frameborder='0' allow='autoplay; encrypted-media' allowfullscreen></iframe>", "videoid":"E2MBCa_OFsY"}
-            ]
-        };
-        */
         
         
         /*

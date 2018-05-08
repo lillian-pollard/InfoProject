@@ -8,13 +8,13 @@ $db = connectDB($DBHost, $DBUser, $DBPassword, $DBName);
 $tabletitle = "reservation";
 $tabletitle2 = "sessions";
 $username = $_SESSION['hawkid'];
-// set up a query to get information on films
+// set up a query to get information on reservation
 $query = "SELECT $tabletitle.sessionid as sessionid, sessiontime, sessiondate, studentid, courseid, reservationid FROM $tabletitle, $tabletitle2
 WHERE $tabletitle.sessionid=$tabletitle2.sessionid
 AND $tabletitle2.tutorid = '$username' AND $tabletitle.cancel IS NULL AND $tabletitle.notes IS NULL
 AND sessiondate<CURDATE()
 ORDER BY SESSIONDATE,SESSIONTIME;";
-// run the query to get info on films
+// run the query to get info on sesseions
 $result = queryDB($query, $db);
 // assign results to an array we can then send back to whomever called
 $pastreservations = array();
@@ -29,12 +29,12 @@ while ($currpast = nextTuple($result)) {
     $reservationid = $pastreservations[$i]['reservationid'];
     $i++;
 }
-// put together a JSON object to send back the data on the films
+// put together a JSON object to send back the data on the reservation
 $response = array();
 $response['status'] = 'success';
 $response['number'] = nTuples($result);
 // 'value' corresponds to response.data.value in data.entertainment.controller.js
-// 'films' corresponds to ng-repeat="film in data.films | filter:query" in the index.html file
+
 $response['value']['pastreservations'] = $pastreservations;
 header('Content-Type: application/json');
 echo(json_encode($response));

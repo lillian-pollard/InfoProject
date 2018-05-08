@@ -21,7 +21,7 @@ $errorMessage = "";
 //
 
 // check if we already have a HawkID that matches the one the user entered
-// if we got this far and $isComplete is true it means we should add the player to the database
+// if we got this far and $isComplete is true it means we should add the reservation database
 if ($isComplete) {
     // create a hashed version of the name    
     // we will set up the insert statement to add this new record to the database

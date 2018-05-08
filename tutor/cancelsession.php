@@ -16,7 +16,7 @@ $tabletitle = "sessions";
 $isComplete = true;
 // error message we'll send back to angular if we run into any problems
 $errorMessage = "";
-// if we got this far and $isComplete is true it means we should add the film to the database
+// if we got this far and $isComplete is true it means we should add the session to the database
 if ($isComplete) {
     // we will set up the insert statement to add this new record to the database
     $updatequery = "UPDATE $tabletitle SET cancel=1 WHERE sessionid='$sessionid' AND tutorid='$username';";
