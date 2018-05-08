@@ -9,9 +9,9 @@ $tabletitle = "reservation";
 $tabletitle2 = "sessions";
 $username = $_SESSION['hawkid'];
 // set up a query to get information on films
-$query = "SELECT $tabletitle.sessionid as sessionid, sessiontime, sessiondate, studentid, courseid FROM $tabletitle, $tabletitle2
+$query = "SELECT $tabletitle.sessionid as sessionid, sessiontime, sessiondate, studentid, courseid, reservationid FROM $tabletitle, $tabletitle2
 WHERE $tabletitle.sessionid=$tabletitle2.sessionid
-AND $tabletitle2.tutorid = '$username' AND $tabletitle.cancel IS NULL
+AND $tabletitle2.tutorid = '$username' AND $tabletitle.cancel IS NULL AND $tabletitle.notes IS NULL
 AND sessiondate<CURDATE()
 ORDER BY SESSIONDATE,SESSIONTIME;";
 // run the query to get info on films
@@ -26,7 +26,7 @@ while ($currpast = nextTuple($result)) {
     $sessiondate = $pastreservations[$i]['sessiondate'];
     $courseid = $pastreservations[$i]['courseid'];
     $studentid = $pastreservations[$i]['studentid'];
-    $sessionid = $pastreservations[$i]['sessionid'];
+    $reservationid = $pastreservations[$i]['reservationid'];
     $i++;
 }
 // put together a JSON object to send back the data on the films

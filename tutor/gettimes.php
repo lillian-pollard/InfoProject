@@ -10,7 +10,7 @@ $tabletitle2 = "reservation";
 $username = $_SESSION['hawkid'];
 //
 //// set up a query to get information on films
-$query = "SELECT DISTINCT sessiontime,sessiondate,courseid FROM $tabletitle, $tabletitle2
+$query = "SELECT DISTINCT sessions.sessionid,sessiontime,sessiondate,courseid FROM $tabletitle, $tabletitle2
 WHERE $tabletitle.tutorid='$username' AND $tabletitle.cancel IS NULL
 AND ($tabletitle.sessionid NOT IN(select sessionid from $tabletitle2) OR $tabletitle.sessionid NOT IN(SELECT sessionid from $tabletitle2 WHERE $tabletitle2.cancel IS NULL))
 and sessiondate>=CURDATE()

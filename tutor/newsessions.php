@@ -11,16 +11,13 @@ $data = json_decode(file_get_contents('php://input'), true);
 $tabletitle= "reservation";
 $tabletitle2="sessions";
 $courseid = $data['courseid'];
-$username = $_SESSION['hawkid'];
+$sessiontime = $data['sessiontime'];
+$sessiondate = $data['sessiondate'];
+$tutorid = $_SESSION['hawkid'];
 
-// get each piece of data
-// 
-$name = $data['name'];
-$student = $data['student'];
-$tutor = $data['tutor'];
 // set up variables to handle errors
 // is complete will be false if we find any problems when checking on the data
-$isComplete = false;
+$isComplete = true;
 // error message we'll send back to angular if we run into any problems
 $errorMessage = "";
 //
@@ -30,7 +27,7 @@ $errorMessage = "";
 if ($isComplete) {
     // create a hashed version of the name    
     // we will set up the insert statement to add this new record to the database
-    $insertquery = " INSERT INTO sessions(sessiontime, sessiondate, tutorid, courseid) VALUES(‘$time’,’$date’,’$username’,’$courseid’)";
+    $insertquery = " INSERT INTO sessions(sessiontime, sessiondate, tutorid, courseid) VALUES('$sessiontime','$sessiondate','$tutorid','$courseid')";
 
     
     // run the insert statement

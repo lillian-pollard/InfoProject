@@ -99,7 +99,28 @@
         $scope.newSession = function(sessionDetails) {
           var accountupload = angular.copy(sessionDetails);
           
-          $http.post("newsession.php", accountupload)
+          $http.post("newsessions.php", accountupload)
+            .then(function (response) {
+               if (response.status == 200) {
+                    if (response.data.status == 'error') {
+                        alert('error: ' + response.data.message);
+                    } else {
+                        // successful
+                        // send user back to home page
+                        $window.location.href = "calander.html";
+                    }
+               } else {
+                    alert('unexpected error');
+               }
+            });                        
+        };
+        
+        
+        
+        $scope.newnote = function(noteinfo) {
+          var accountupload = angular.copy(noteinfo);
+          
+          $http.post("addnote.php", accountupload)
             .then(function (response) {
                if (response.status == 200) {
                     if (response.data.status == 'error') {

@@ -82,20 +82,34 @@
         
         
         <h2>Previous Reservations</h2>
-        <table class="table">
+        <table class="table" ng-repeat="pastreservation in data6.pastreservations | filter:query">
                <thead>
                     <tr>
                         <th>Date</th>
                         <th>Time</th>
                         <th>Student</th>
                         <th>Course</th>
+                        <th></th>
+                        <th></th>
                     </tr>
                </thead>
-               <tr ng-repeat="pastreservation in data6.pastreservations | filter:query">
+               <tr>
                     <td>{{pastreservation.sessiondate}}</td>
                     <td>{{pastreservation.sessiontime}}</td>
                     <td>{{pastreservation.studentid}}</td>
-                    <td>{{pastreservation.courseid}}</td> 
+                    <td>{{pastreservation.courseid}}</td>
+                
+                    <form>
+                        <td>
+                        <input type='hidden' ng-model='noteinfo.reservationid' name='reservationid' ng-value='pastreservation.reservationid'>
+                        <textarea name="message" ng-model='noteinfo.note' rows="3" cols="50">
+                        Notes from previous session
+                        </textarea>
+                         </td>
+                        <td>
+                         <button type="button" class="btn btn-primary btn-warning" ng-click="newnote(noteinfo)">Add Note</button>
+                         </td>
+                    </form>
                </tr>
         </table>
         
