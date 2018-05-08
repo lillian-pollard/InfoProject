@@ -46,13 +46,13 @@
  
     
     foreach ($courses as $value) {
-        if (in_array("1210", $value)){
+        if (in_array("CS:1210", $value)){
             $c1210 = true;
         }
-        if (in_array("1020", $value)){
+        if (in_array("CS:1020", $value)){
             $c1020 = true;
         }
-        if (in_array("1110", $value)){
+        if (in_array("CS:1110", $value)){
             $c1110 = true;
         }
     }
