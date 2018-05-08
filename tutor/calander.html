@@ -25,33 +25,35 @@
 </head>
 
 <body>
-            <!-- header -->
-
+<!-- header -->
     <div class="container" ng-controller="dataControl">
         
         <!-- header -->
-        <div ng-include ng-init="menuHighlight = 2;" src="'header.html'"></div>     
+        <div ng-include ng-init="menuHighlight = 2;" src="'tutorheader.html'"></div>     
     <!-- we are defining the angular controller that we will use in this chunk of html defined by the div as 'dataControl' from data.entertainment.controller.js -->
-        <h2>Open Sessions</h2>
+        <table>
+            <tr><td> <h2>Open Sessions</h2></td>
+            <td><a href='newsessions.html'><img src= "https://findicons.com/files/icons/808/on_stage/128/symbol_add.png" width="80px" height="80px"></img></a></td>
+                
+            </tr>
+                    
         <table class="table">
                <thead>
                     <tr>
                         <th>Date</th>
                         <th>Time</th>
-                        <th>Tutor</th>
+                        <th>Course</th>
                         <th></th>
                     </tr>
                </thead>
                <tr ng-repeat="time in data.times | filter:query">
                     <td >{{time.sessiondate}}</td>
                     <td>{{time.sessiontime}}</td>
-                    <td>{{time.tutorid}}</td>
-                    <td><a href=addreservation.php>
-                        <button type="button" class="btn btn-primary btn-success ng-click=addRes(sessionid,courseid)">Reserve</button>
-                        </a>
+                    <td>{{time.courseid}}</td>
+                    <td>
+                        <button type="button" class="btn btn-primary btn-danger" ng-click="cancelsession(time.sessionid)">Cancel</button>
+                        
                     </td>
-                    
-<!--    <td><form action="addreservation.php" method="post"><input type="submit" label="select"></form></td> -->
                </tr>
         </table>
         <h2>Current Reservations</h2>
@@ -60,22 +62,42 @@
                     <tr>
                         <th>Date</th>
                         <th>Time</th>
-                        <th>Tutor</th>
+                        <th>Student</th>
+                        <th>Course</th>
                         <th></th>
                     </tr>
                </thead>
                <tr ng-repeat="reservation in data3.reservations | filter:query">
                     <td>{{reservation.sessiondate}}</td>
                     <td>{{reservation.sessiontime}}</td>
-                    <td>{{reservation.tutorid}}</td>
-                    <td><a href=cancelreservation.php>
-                        <button type="button" class="btn btn-primary btn-danger">Cancel</button>
-                        </a>
+                    <td>{{reservation.studentid}}</td>
+                    <td>{{reservation.courseid}}</td>
+                    <td>
+                        <button type="button" class="btn btn-primary btn-danger" ng-click="cancelres(reservation.sessionid)">Cancel</button>
                     </td>
+                    
               <!--      <td><form action="cancelreservation.php" method="post"><input type="submit" label="select"></form></td> -->
                </tr>
         </table>
-    
+        
+        
+        <h2>Previous Reservations</h2>
+        <table class="table">
+               <thead>
+                    <tr>
+                        <th>Date</th>
+                        <th>Time</th>
+                        <th>Student</th>
+                        <th>Course</th>
+                    </tr>
+               </thead>
+               <tr ng-repeat="pastreservation in data6.pastreservations | filter:query">
+                    <td>{{pastreservation.sessiondate}}</td>
+                    <td>{{pastreservation.sessiontime}}</td>
+                    <td>{{pastreservation.studentid}}</td>
+                    <td>{{pastreservation.courseid}}</td> 
+               </tr>
+        </table>
         
         
         

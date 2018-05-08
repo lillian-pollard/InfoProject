@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="en" ng-app="tutor">
+<head>
+    <!-- this is what shows up in the tabs in your browser and if you bookmark the page -->
+    <title>CS Tutors-Tutor</title>
+
+    <!-- These are the links to bootstrap code -->
+    <!-- we got the links from http://getbootstrap.com/docs/4.0/getting-started/introduction/ -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css" integrity="sha384-Zug+QiDoJOrZ5t4lssLdxGhVrurbmBWopoEl+M6BdEfwnCJZtKxi1KgxUyJq13dy" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/js/bootstrap.min.js" integrity="sha384-a5N7Y/aK3qNeh15eJKGWxsqtnX/wWdSZSKp+81YjTmS15nvnvxKHuzaWwXHDli+4" crossorigin="anonymous"></script>
+    
+    <!-- link to angular -->
+    <!-- you can download it from https://angularjs.org/ then you need to upload it to the webdev server. -->
+    <script src="angular.min.js"></script>
+    <!-- angular code we wrote -->
+    <!-- entertainment.module.js is where we define the angular app called 'entertainment'. We use the title of the app in the html element at the top of the file -->
+    <script src="tutor.module.js"></script>
+    <!-- data.entertainment.controller.js is where we are getting the data from. It defines a controller under the 'entertainment' app called 'dataControl', and data is under $scope.data -->
+    <script src="data.tutor.controller.js"></script>
+    <!-- entertainment.filter.js enables us to display html code -->
+    <script src="tutor.filter.js"></script>
+</head>
+
+<body>
+    <!-- header -->
+    <div class="container" ng-controller="dataControl">
+        <!-- header -->
+        <div ng-include ng-init="menuHighlight = 0;" src="'tutorheader.html'"></div>
+        
+              
+        <h3>Create new Session:</h3>
+        <div class="row-form" id="collapse-form">              
+            <form  name="newSessionForm" novalidate>
+                
+                <!-- sessiondate of the user -->
+                <!-- ng-class sets up the style for this element. You'll find a format of 'style': condition, 'style2': condition2 -->
+                <!-- notice in ng-class we are using the name of the form, and the name of the input element in the codition statements -->
+                <div class="form-group" ng-class="{ 'text-danger': newSessionForm.sessiondate.$invalid && newSessionForm.sessiondate.$touched, 'text-success': !newSessionForm.sessiondate.$invalid && newSessionForm.sessiondate.$touched}">
+                    <label>Date (2018-05-07): </label>
+                    <input type="text" class="form-control" ng-class="{ 'is-invalid': newSessionForm.sessiondate.$invalid && newSessionForm.sessiondate.$touched, 'is-valid': !newSessionForm.sessiondate.$invalid && newSessionForm.sessiondate.$touched}" name="sessiondate" ng-model="account.sessiondate" ng-minlength="2" required/>
+                    <p ng-show="newSessionForm.sessiondate.$invalid && newSessionForm.sessiondate.$touched" >The students's sessiondate must be at least two characters long</p>
+                </div>   
+                
+                
+                <!-- name of the student -->
+                <div class="form-group" ng-class="{ 'text-danger': newSessionForm.sessiontime.$invalid && newSessionForm.sessiontime.$touched, 'text-success': !newSessionForm.sessiontime.$invalid && newSessionForm.sessiontime.$touched }">
+                  <label class="form-control-label" for="sessiontime">Time (1:00 PM): </label>
+                  <input type="text" class="form-control" ng-class="{ 'is-invalid': newSessionForm.sessiontime.$invalid && newSessionForm.sessiontime.$touched, 'is-valid': !newSessionForm.sessiontime.$invalid && newSessionForm.sessiontime.$touched }" name="sessiontime" ng-model="account.sessiontime" ng-minlength="2" id="sessiontime" required/>
+                  <div ng-show="newSessionForm.sessiontime.$invalid && newSessionForm.sessiontime.$touched" >The students's first name must be at least two characters long</div>
+                </div>
+                
+                
+                
+          
+                <h5>Course(s):</h5>
+                <div class='row' id='classtype'>
+                  <div class="form-check form-check-inline">
+                    <input class="form-check-input" ng-model="sessions.cs1020" type="checkbox" id="cs1020" value="1">
+                    <label class="form-check-label" for="inlineCheckbox5">CS:1020</label>
+                  </div>
+                  <div class="form-check form-check-inline">
+                    <input class="form-check-input" ng-model="sessions.cs1110" type="checkbox" id="cs1110" value="1">
+                    <label class="form-check-label" for="inlineCheckbox6">CS:1110</label>
+                  </div>
+                  <div class="form-check form-check-inline">
+                    <input class="form-check-input" ng-model="sessions.cs1210" type="checkbox" id="cs1210" value="1">
+                    <label class="form-check-label" for="inlineCheckbox7">CS:1210</label>
+                  </div>
+                </div>
+                 <button type="button" class="btn btn-primary btn-success" ng-click="session(sessions)" ng-disabled="newSessionForm.$invalid">Submit</button>
+            </form>
+        </div> <!-- close row -->
+        
+      
+          
+        </main>
+        
+
+        
+      </div>
+    </div>
+    
+    
+        <!-- Footer -->
+        <div ng-include src="'footer.html'"></div>
+        
+    </div>
+</body>
+</html>

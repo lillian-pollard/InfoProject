@@ -10,10 +10,7 @@ $data = json_decode(file_get_contents('php://input'), true);
 $db = connectDB($DBHost, $DBUser, $DBPassword, $DBName);
 $sessionid = $data['sessionid'];
 $username = $_SESSION['hawkid'];
-$tabletitle = "reservation";
-$tabletitle2 = "scourselist";
-$tabletitle3 = "sessions";
-$tabletitle4 = "tcourselist";
+$tabletitle = "sessions";
 // set up variables to handle errors
 // is complete will be false if we find any problems when checking on the data
 $isComplete = true;
@@ -22,29 +19,10 @@ $errorMessage = "";
 // if we got this far and $isComplete is true it means we should add the film to the database
 if ($isComplete) {
     // we will set up the insert statement to add this new record to the database
-    //cancel reservation
-    $updatequery = "UPDATE $tabletitle,$tabletitle3 SET $tabletitle.CANCEL=1 WHERE $tabletitle.sessionid=$tabletitle3.sessionid AND $tabletitle.sessionid='$sessionid' AND tutorid='$username';";
+    $updatequery = "UPDATE $tabletitle SET CANCEL=1 WHERE sessionid='$sessionid' AND tutorid='$username';";
     
     // run the insert statement
-    //cancel session
     queryDB($updatequery, $db);
-     $updatequery0 = "UPDATE $tabletitle3 SET $tabletitle3.CANCEL=1 WHERE sessionid='$sessionid' AND tutorid='$username';";
-    
-    // run the insert statement
-    queryDB($updatequery0, $db);
-    //update student budget for course which session is tutoring
-    $updatequery1 = "UPDATE $tabletitle2,$tabletitle3 SET $tabletitle2.currbudget=$tabletitle2.currbudget+1
-    WHERE hawkid='$username' and $tabletitle2.courseid=$tabletitle3.courseid 
-    AND sessionid='$sessionid';";
-    
-    // run the insert statement
-    queryDB($updatequery1, $db);
-    //update tutor budget for course which session is tutoring
-    $updatequery2 = "UPDATE $tabletitle4,$tabletitle3 SET $tabletitle4.currbudget=$tabletitle4.currbudget+1
-    WHERE sessionid='$sessionid' and $tabletitle3.courseid=$tabletitle4.courseid and tutorid='$username';";
-    
-    // run the insert statement
-    queryDB($updatequery2, $db);
     
     // get the id of the reservation we just entered
     $cancelid = mysqli_insert_id($db);

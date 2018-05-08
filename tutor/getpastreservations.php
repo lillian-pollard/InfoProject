@@ -9,24 +9,24 @@ $tabletitle = "reservation";
 $tabletitle2 = "sessions";
 $username = $_SESSION['hawkid'];
 // set up a query to get information on films
-$query = "SELECT sessiontime,sessiondate,studentid,courseid,$tabletitle.sessionid as sessionid
-FROM $tabletitle, $tabletitle2 WHERE $tabletitle.sessionid=$tabletitle2.sessionid
-AND $tabletitle2.tutorid = '$username' AND $tabletitle.cancel IS NULL and
-$tabletitle2.cancel IS NULL AND sessiondate>=CURDATE()
-ORDER BY sessiondate,sessiontime;";
+$query = "SELECT $tabletitle.sessionid as sessionid, sessiontime, sessiondate, studentid, courseid FROM $tabletitle, $tabletitle2
+WHERE $tabletitle.sessionid=$tabletitle2.sessionid
+AND $tabletitle2.tutorid = '$username' AND $tabletitle.cancel IS NULL
+AND sessiondate<CURDATE()
+ORDER BY SESSIONDATE,SESSIONTIME;";
 // run the query to get info on films
 $result = queryDB($query, $db);
 // assign results to an array we can then send back to whomever called
-$reservations = array();
+$pastreservations = array();
 $i = 0;
 // go through the results one by one
-while ($currres = nextTuple($result)) {
-    $reservations[$i] = $currres;
-    $sessiontime = $reservations[$i]['sessiontime'];
-    $sessiondate = $reservations[$i]['sessiondate'];
-    $studentid = $reservations[$i]['studentid'];
-    $courseid = $reservations[$i]['courseid'];
-    $sessionid = $reservations[$i]['sessionid'];
+while ($currpast = nextTuple($result)) {
+    $pastreservations[$i] = $currpast;
+    $sessiontime = $pastreservations[$i]['sessiontime'];
+    $sessiondate = $pastreservations[$i]['sessiondate'];
+    $courseid = $pastreservations[$i]['courseid'];
+    $studentid = $pastreservations[$i]['studentid'];
+    $sessionid = $pastreservations[$i]['sessionid'];
     $i++;
 }
 // put together a JSON object to send back the data on the films
@@ -35,7 +35,7 @@ $response['status'] = 'success';
 $response['number'] = nTuples($result);
 // 'value' corresponds to response.data.value in data.entertainment.controller.js
 // 'films' corresponds to ng-repeat="film in data.films | filter:query" in the index.html file
-$response['value']['reservations'] = $reservations;
+$response['value']['pastreservations'] = $pastreservations;
 header('Content-Type: application/json');
 echo(json_encode($response));
 ?>

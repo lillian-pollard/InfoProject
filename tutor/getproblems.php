@@ -20,7 +20,8 @@ $i = 0;
 // go through the results one by one
 while ($currprob = nextTuple($result)) {
     $problems[$i] = $currprob;
-    $file = $problems[$i]['filename'];
+    $filename = $problems[$i]['filename'];
+    $problems[$i]['filepdf']  = "<embed width='700' height='200' src='problems/$filename' type='application/pdf'></embed>";
     $courseid = $problems[$i]['courseid'];
     $i++;
 }

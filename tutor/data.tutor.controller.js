@@ -36,6 +36,19 @@
                 }
             );
             
+              $http.get('courselist.php')
+            .then(function(response) {
+                // response.data.value has value come from the getfilms.php file $response['value']['films'] = $films;
+                $scope.data5 = response.data.value;
+                }
+            );
+            
+            $http.get('getpastreservations.php')
+            .then(function(response) {
+                // response.data.value has value come from the getfilms.php file $response['value']['films'] = $films;
+                $scope.data6 = response.data.value;
+                }
+            );
         
         // define data for the app
         // in the html code we will refer to data.films. The data part comes from $scope.data, the films part comes from the JSON object below
@@ -48,10 +61,8 @@
         // 1 is for newfilm.html
         $scope.menuHighlight = 0;
         
-        $scope.cancel = function(reservationinfo) {
-          var cancelres = angular.copy(reservationinfo);
-          
-          $http.post("cancelreservation.php", cancelres)
+        $scope.cancelsession = function(sessionid) {          
+          $http.post("cancelsession.php", {"sessionid": sessionid})
             .then(function (response) {
                if (response.status == 200) {
                     if (response.data.status == 'error') {
@@ -59,13 +70,50 @@
                     } else {
                         // successful
                         // send user back to home page
-                        $window.location.href = "calendar.html";
+                        $window.location.href = "calander.html";
                     }
                } else {
                     alert('unexpected error');
                }
-            });
+            
+          });              
         };
+        $scope.cancelres = function(sessionid) {          
+          $http.post("cancelreservation.php", {"sessionid": sessionid})
+            .then(function (response) {
+               if (response.status == 200) {
+                    if (response.data.status == 'error') {
+                        alert('error: ' + response.data.message);
+                    } else {
+                        // successful
+                        // send user back to home page
+                        $window.location.href = "calander.html";
+                    }
+               } else {
+                    alert('unexpected error');
+               }
+            
+          });              
+        };
+         // function to send new account information to web api to add it to the database
+        $scope.newSession = function(sessionDetails) {
+          var accountupload = angular.copy(sessionDetails);
+          
+          $http.post("newsession.php", accountupload)
+            .then(function (response) {
+               if (response.status == 200) {
+                    if (response.data.status == 'error') {
+                        alert('error: ' + response.data.message);
+                    } else {
+                        // successful
+                        // send user back to home page
+                        $window.location.href = "calander.html";
+                    }
+               } else {
+                    alert('unexpected error');
+               }
+            });                        
+        };  
        
         // function to send new account information to web api to add it to the database
         $scope.login = function(accountDetails) {
