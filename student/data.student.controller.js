@@ -41,12 +41,6 @@
                 $scope.data5 = response.data.value;
                 }
             );
-        $http.get('getspecificres.php')
-            .then(function(response) {
-                // response.data.value has value come from the getfilms.php file $response['value']['films'] = $films;
-                $scope.data6 = response.data.value;
-                }
-            );
             
         
         // define data for the app
@@ -95,25 +89,6 @@
             
           });              
         };
-        
-        $scope.rateres = function(reservationInfo) {
-            var resupload = angular.copy(reservationInfo);
-          $http.post("addrating.php", resupload)
-            .then(function (response) {
-               if (response.status == 200) {
-                    if (response.data.status == 'error') {
-                        alert('error: ' + response.data.message);
-                    } else {
-                        // successful
-                        // send user back to home page
-                        $window.location.href = "calendar.html";
-                    }
-               } else {
-                    alert('unexpected error');
-               }
-            
-          });              
-        };
 
        
         // function to send new account information to web api to add it to the database
@@ -147,7 +122,7 @@
                     } else {
                         // successful
                         // send user back to home page
-                        $window.location.href = "../home.html";
+                        $window.location.href = "home.html";
                     }
                } else {
                     alert('unexpected error');
