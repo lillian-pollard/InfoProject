@@ -14,22 +14,22 @@
     
     <!-- link to angular -->
     <!-- you can download it from https://angularjs.org/ then you need to upload it to the webdev server. -->
-    <script src="../angular.min.js"></script>
+    <script src="angular.min.js"></script>
     <!-- angular code we wrote -->
     <!-- entertainment.module.js is where we define the angular app called 'entertainment'. We use the title of the app in the html element at the top of the file -->
-    <script src="../tutor.module.js"></script>
-        <script src="../data.student.controller.js"></script>
+    <script src="tutor.module.js"></script>
+        <script src="data.student.controller.js"></script>
 
     <!-- data.entertainment.controller.js is where we are getting the data from. It defines a controller under the 'entertainment' app called 'dataControl', and data is under $scope.data -->
     <!-- entertainment.filter.js enables us to display html code -->
-    <script src="../tutor.filter.js"></script>
+    <script src="tutor.filter.js"></script>
 </head>
 
 </head>
 <body>
     <!-- we are defining the angular controller that we will use in this chunk of html defined by the div as 'dataControl' from data.entertainment.controller.js -->
     <div class="container" ng-controller="dataControl">
-                <div ng-include ng-init="menuHighlight = 0;" src='header.html'></div>
+                <div ng-include ng-init="menuHighlight = 0;" src="'header.html'"></div>
 
             <!-- header -->
             <div class="row">
