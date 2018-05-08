@@ -8,13 +8,13 @@ $db = connectDB($DBHost, $DBUser, $DBPassword, $DBName);
 $tabletitle = "tcourselist";
 $username = $_SESSION['hawkid'];
 //
-//// set up a query to get information on course
+//// set up a query to get information on films
 $query = "SELECT courseid FROM $tabletitle
 WHERE hawkid='$username'";
 //
 // 
 //$query = "SELECT * FROM $tabletitle;";
-// run the query to get info on tcourslist
+// run the query to get info on films
 $result = queryDB($query, $db);
 // assign results to an array we can then send back to whomever called
 $courses = array();
@@ -25,11 +25,11 @@ while ($currcourse = nextTuple($result)) {
     $courseid = $courses[$i]['courseid'];
     $i++;
 }
-// put together a JSON object to send back the data on the session
+// put together a JSON object to send back the data on the films
 $response = array();
 $response['status'] = 'success';
 // 'value' corresponds to response.data.value in data.entertainment.controller.js
-
+// 'films' corresponds to ng-repeat="film in data.films | filter:query" in the index.html file
 $response['value']['courses'] = $courses;
 header('Content-Type: application/json');
 echo(json_encode($response));

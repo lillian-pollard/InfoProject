@@ -1,5 +1,5 @@
 /*
- * Controller where we get the data on sesions
+ * Controller where we get the data on entertainment films
  */
 (function () {
     'use strict';
@@ -11,54 +11,54 @@
     myApp.controller("dataControl", function($scope, $http, $window) {
         $http.get('gettimes.php')
             .then(function(response) {
-                // response.data.value has value come from the getimes.php 
+                // response.data.value has value come from the getfilms.php file $response['value']['films'] = $films;
                 $scope.data = response.data.value;
                 }
             );
         //get budget
         $http.get('getbudget.php')
             .then(function(response) {
-                // response.data.value has value come from the getbudget.php 
+                // response.data.value has value come from the getfilms.php file $response['value']['films'] = $films;
                 $scope.data2 = response.data.value;
                 }
             );
             
         $http.get('getreservation.php')
             .then(function(response) {
-                // response.data.value has value come from the getreservation.php
+                // response.data.value has value come from the getfilms.php file $response['value']['films'] = $films;
                 $scope.data3 = response.data.value;
                 }
             );
             $http.get('getproblems.php')
             .then(function(response) {
-                // response.data.value has value come from the getproblems.php file $response
+                // response.data.value has value come from the getfilms.php file $response['value']['films'] = $films;
                 $scope.data4 = response.data.value;
                 }
             );
             
               $http.get('courselist.php')
             .then(function(response) {
-                // response.data.value has value come from the courselist.php file $response['value']['films'] = $films;
+                // response.data.value has value come from the getfilms.php file $response['value']['films'] = $films;
                 $scope.data5 = response.data.value;
                 }
             );
             
             $http.get('getpastreservations.php')
             .then(function(response) {
-                // response.data.value has value come from the getpastreservations.php file
+                // response.data.value has value come from the getfilms.php file $response['value']['films'] = $films;
                 $scope.data6 = response.data.value;
                 }
             );
         
         // define data for the app
-    
+        // in the html code we will refer to data.films. The data part comes from $scope.data, the films part comes from the JSON object below
        
         $scope.query = {};
         $scope.queryBy = "$";
             
         // this variable will hold the page number that should be highlighted in the menu bar
         // 0 is for index.html
-        
+        // 1 is for newfilm.html
         $scope.menuHighlight = 0;
         
         $scope.cancelsession = function(sessionid) {          

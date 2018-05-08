@@ -9,10 +9,10 @@ $tabletitle = "problemset";
 $tabletitle2 = "tcourselist";
 $username = $_SESSION['hawkid'];
 //
-//// set up a query to get information on problems
+//// set up a query to get information on films
 $query = "SELECT * FROM $tabletitle, $tabletitle2  WHERE $tabletitle.courseid = $tabletitle2.courseid AND hawkid='$username';";
 //$query = "SELECT * FROM $tabletitle;";
-// run the query to get info on tcourselist
+// run the query to get info on films
 $result = queryDB($query, $db);
 // assign results to an array we can then send back to whomever called
 $problems = array();
@@ -25,11 +25,11 @@ while ($currprob = nextTuple($result)) {
     $courseid = $problems[$i]['courseid'];
     $i++;
 }
-// put together a JSON object to send back the data on the problems
+// put together a JSON object to send back the data on the films
 $response = array();
 $response['status'] = 'success';
 // 'value' corresponds to response.data.value in data.entertainment.controller.js
-
+// 'films' corresponds to ng-repeat="film in data.films | filter:query" in the index.html file
 $response['value']['problems'] = $problems;
 header('Content-Type: application/json');
 echo(json_encode($response));
