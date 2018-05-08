@@ -14,7 +14,7 @@ $username = $_SESSION['hawkid'];
 // set up a query to get information on films
 $query = "SELECT $tabletitle.sessionid, sessiontime, sessiondate, tutorid, courseid FROM $tabletitle, $tabletitle2
 WHERE $tabletitle.sessionid=$tabletitle2.sessionid
-AND $tabletitle.studentid = '$username' AND cancel IS NULL
+AND $tabletitle.studentid = '$username' AND $tabletitle.cancel IS NULL
 AND sessiondate >= CURDATE()
 ORDER BY SESSIONDATE,SESSIONTIME;";
 
